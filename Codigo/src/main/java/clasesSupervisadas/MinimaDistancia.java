@@ -55,7 +55,6 @@ public class MinimaDistancia {
                }
            }
            
-           
             if(encontrado){
                 //si exite agrega ese elemento como uno representativo
                 representativos.get(posicion).acumular(aux);
@@ -94,6 +93,8 @@ public class MinimaDistancia {
        for(Patron p: patrones){
            clasificar(p);
        }
+       MatrizConfusion mc = new MatrizConfusion(patrones); //se mandan los patrones ya clasificados para crear la matriz de confusion
+       //los patrones que mandamos, tiene ya su clase resultante
     }
     
     public static double distancia(double[] v1, double[] v2) {
