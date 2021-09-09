@@ -94,8 +94,10 @@ public class MinimaDistancia {
        for(Patron p: patrones){
            clasificar(p);
        }
-        mc = new MatrizConfusion(patrones); //se mandan los patrones ya clasificados para crear la matriz de confusion
-       //los patrones que mandamos, tiene ya su clase resultante
+       
+        mc = new MatrizConfusion(); //se mandan los patrones ya clasificados para crear la matriz de confusion
+        mc.construirMatriz(patrones);
+       //los patrones que mandamos, tiene ya su clase resultante y clase original
        
     }
     

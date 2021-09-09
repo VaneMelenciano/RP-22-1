@@ -19,29 +19,37 @@ public final class MatrizConfusion {
     private ArrayList<String> clases;
     private int sumaDiagonal; //suma de las instancias clasificadas correctamente
     
-    public MatrizConfusion(ArrayList<Patron> instancias){ //se resiben la lista de datos YA CLASIFICADA, con su clase resultante
-        this.instancias = instancias; 
+    public MatrizConfusion(ArrayList<Patron> instanciass){ //se resiben la lista de datos YA CLASIFICADA, con su clase resultante
+        this.instancias = instanciass;
+        this.construirMatriz(instancias); 
         this.matriz=null;
-        this.construirMatriz();
+        this.clases=new ArrayList<>();
+        this.sumaDiagonal=0;
+    }
+    public MatrizConfusion(){
+        this.matriz=null;
+        this.clases=new ArrayList<>();
+        this.sumaDiagonal=0;
     }
     
-    public void construirMatriz(){
+    public void construirMatriz(ArrayList<Patron> instanciass){
+        this.instancias = instanciass;
         /*
                         Setosa      Versicolor      Virginica
         Setosa                        
         Versicolor         
         virginica          
         */
-        // Saber cuantas y cuales son las clases diferentes exiten en las instancias que recibe
-        for(Patron pa: getInstancias()){
-           if(!this.clases.contains(pa.getClase())){
-               this.clases.add(pa.getClase());
+        // Saber cuales son las clases diferentes exiten en las instancias que recibe
+        for(Patron pa: instancias){
+           if(!clases.contains(pa.getClase())){
+               clases.add(pa.getClase());
            }
        }   
         setMatriz(new int[getClases().size()][getClases().size()]); //da a la matriz las dimensiones, dependiendo de las clases exixtentes
        for(Patron p: getInstancias()){
            int verdaderaClase = clases.indexOf(p.getClase()); // posicion de la verdadera clase de la instancia, en el ArrayList de clases
-           int claseResultante = clases.indexOf(p.getClase()); // posicion de la clase resultante de la instancia, en el ArrayList de clases
+           int claseResultante = clases.indexOf(p.getClaseResultante()); // posicion de la clase resultante de la instancia, en el ArrayList de clases
             matriz[verdaderaClase][claseResultante]++;
            if(verdaderaClase==claseResultante){ //si está bien clasificada
                 sumaDiagonal++; 
@@ -60,14 +68,15 @@ public final class MatrizConfusion {
         for(String clase: clases){ //primera fila
             auxMatriz+=clase+"\t";
         }
+         auxMatriz+="\n";
         for(int i=0;i<clases.size();i++){
-                auxMatriz+=clases.get(i);
+                auxMatriz+=clases.get(i)+"\t";
             for(int j=0;j<clases.size();j++){
-             auxMatriz+=getMatriz()[i][j]+"\t";
+             auxMatriz+=getMatriz()[i][j]+"\t\t";
             }
             auxMatriz+="\n";
         }
-        auxMatriz+= "\n" + "Efectividad: " + calcularEfectividad();
+        auxMatriz+= "\n" + "Efectividad: " + calcularEfectividad() + "%";
         return auxMatriz;
     }
 
