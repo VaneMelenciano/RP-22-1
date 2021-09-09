@@ -29,7 +29,7 @@ public class rp22 {
         pr.acumular(p4);
         pr.promediar();
         System.out.println();*/
-        Instancias.leerArchivo();
+        /*Instancias.leerArchivo();
         MinimaDistancia minD = new MinimaDistancia();
         minD.entrenar(Instancias.getInstancias());
         ArrayList<Patron> patrones = new ArrayList<Patron>();
@@ -44,7 +44,18 @@ public class rp22 {
         patrones.add(p4);
         patrones.add(p5);
         minD.clasificar(patrones);
-        System.out.println();
+        System.out.println();*/
+        MinimaDistancia mc = new MinimaDistancia();
+        
+        //ENTRENAMIENTO
+        Instancias instancias = new Instancias(); //leer los datos (txt) de los datos para entrenamiento
+        mc.entrenar(instancias.getInstancias()); //mandamos los datos para entrenar
+        
+        //CLASIFICACION
+        Instancias instancias2 = new Instancias(); //leer datos (txt) para clasificar
+        mc.clasificar(instancias2.getInstancias()); // se clasifican los datos antes leidos
+        
+        System.out.println(mc.getMc().toString());
         
     }
 }

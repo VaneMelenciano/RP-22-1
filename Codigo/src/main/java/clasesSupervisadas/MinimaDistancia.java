@@ -29,6 +29,7 @@ import java.util.ArrayList;
 public class MinimaDistancia {
     
     private ArrayList<PatronRepresentativo> representativos;
+    private MatrizConfusion mc;
     
     public MinimaDistancia(){
         this.representativos = new ArrayList<PatronRepresentativo>();
@@ -93,8 +94,9 @@ public class MinimaDistancia {
        for(Patron p: patrones){
            clasificar(p);
        }
-       MatrizConfusion mc = new MatrizConfusion(patrones); //se mandan los patrones ya clasificados para crear la matriz de confusion
+        mc = new MatrizConfusion(patrones); //se mandan los patrones ya clasificados para crear la matriz de confusion
        //los patrones que mandamos, tiene ya su clase resultante
+       
     }
     
     public static double distancia(double[] v1, double[] v2) {
@@ -106,5 +108,20 @@ public class MinimaDistancia {
         dis = Math.sqrt(dis);
         return dis;
     }
+
+    /**
+     * @return the mc
+     */
+    public MatrizConfusion getMc() {
+        return mc;
+    }
+
+    /**
+     * @param mc the mc to set
+     */
+    public void setMc(MatrizConfusion mc) {
+        this.mc = mc;
+    }
+    
 }
 
