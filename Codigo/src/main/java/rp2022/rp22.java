@@ -31,7 +31,7 @@ public class rp22 {
         System.out.println();*/
         Instancias.leerArchivo();
         MinimaDistancia minD = new MinimaDistancia();
-        minD.entrenar(Instancias.instancias);
+        minD.entrenar(Instancias.getInstancias());
         ArrayList<Patron> patrones = new ArrayList<Patron>();
         Patron p1 = new Patron(new double []{5,9,1,0});
         Patron p2 = new Patron(new double []{3,8,7,6});

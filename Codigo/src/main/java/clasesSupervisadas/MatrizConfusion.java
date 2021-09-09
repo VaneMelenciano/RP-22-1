@@ -12,15 +12,17 @@ import java.util.ArrayList;
  *
  * @author Vanessa
  */
-public class MatrizConfusion {
+public final class MatrizConfusion {
     
     private ArrayList<Patron> instancias;
     private int[][] matriz;
-    private int efectividad;
+    private ArrayList<String> clases;
+    private int sumaDiagonal; //suma de las instancias clasificadas correctamente
     
     public MatrizConfusion(ArrayList<Patron> instancias){ //se resiben la lista de datos YA CLASIFICADA, con su clase resultante
         this.instancias = instancias; 
         this.matriz=null;
+        this.construirMatriz();
     }
     
     public void construirMatriz(){
@@ -30,13 +32,43 @@ public class MatrizConfusion {
         Versicolor         
         virginica          
         */
-        // Saber cuantas clases existen
-        
+        // Saber cuantas y cuales son las clases diferentes exiten en las instancias que recibe
+        for(Patron pa: getInstancias()){
+           if(!this.clases.contains(pa.getClase())){
+               this.clases.add(pa.getClase());
+           }
+       }   
+        setMatriz(new int[getClases().size()][getClases().size()]); //da a la matriz las dimensiones, dependiendo de las clases exixtentes
+       for(Patron p: getInstancias()){
+           int verdaderaClase = clases.indexOf(p.getClase()); // posicion de la verdadera clase de la instancia, en el ArrayList de clases
+           int claseResultante = clases.indexOf(p.getClase()); // posicion de la clase resultante de la instancia, en el ArrayList de clases
+            matriz[verdaderaClase][claseResultante]++;
+           if(verdaderaClase==claseResultante){ //si está bien clasificada
+                sumaDiagonal++; 
+           }
+       }
     }
-    public void calcularEfectividad(){
-        //suma de la diagonal de la matriz
+    
+    public int calcularEfectividad(){
         //porcentaje (multiplicar la suma por 100, entre el total de instancias resibidas)
-        
+        return sumaDiagonal*100/getInstancias().size(); 
+    }
+
+    @Override
+    public String toString() {
+        String auxMatriz = "\t\t";
+        for(String clase: clases){ //primera fila
+            auxMatriz+=clase+"\t";
+        }
+        for(int i=0;i<clases.size();i++){
+                auxMatriz+=clases.get(i);
+            for(int j=0;j<clases.size();j++){
+             auxMatriz+=getMatriz()[i][j]+"\t";
+            }
+            auxMatriz+="\n";
+        }
+        auxMatriz+= "\n" + "Efectividad: " + calcularEfectividad();
+        return auxMatriz;
     }
 
     /**
@@ -68,17 +100,31 @@ public class MatrizConfusion {
     }
 
     /**
-     * @return the efectividad
+     * @return the clases
      */
-    public int getEfectividad() {
-        return efectividad;
+    public ArrayList<String> getClases() {
+        return clases;
     }
 
     /**
-     * @param efectividad the efectividad to set
+     * @param clases the clases to set
      */
-    public void setEfectividad(int efectividad) {
-        this.efectividad = efectividad;
+    public void setClases(ArrayList<String> clases) {
+        this.clases = clases;
+    }
+
+    /**
+     * @return the sumaDiagonal
+     */
+    public int getSumaDiagonal() {
+        return sumaDiagonal;
+    }
+
+    /**
+     * @param sumaDiagonal the sumaDiagonal to set
+     */
+    public void setSumaDiagonal(int sumaDiagonal) {
+        this.sumaDiagonal = sumaDiagonal;
     }
     
     

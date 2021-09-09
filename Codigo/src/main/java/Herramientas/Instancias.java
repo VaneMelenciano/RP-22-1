@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
  * @author Vanessa
  */
 public class Instancias {
-    public static ArrayList<Patron> instancias;
+    private ArrayList<Patron> instancias;
     //Leer archivo (csv, txt), tokenizar datos, guardar las instancias (de cada renglon)
     
     public Instancias(){
@@ -31,8 +31,8 @@ public class Instancias {
     }
     
     //Leer el archivo (csc o txt)
-    public static void leerArchivo(){
-        instancias = new ArrayList<>();
+    public void leerArchivo(){
+        instancias = new ArrayList<Patron>();
         String aux, texto;
         LinkedList<String> lista = new LinkedList(); //para guardar los datos que se vayan leyendo
         
@@ -91,4 +91,19 @@ public class Instancias {
             
         }
     }
+
+    /**
+     * @return the instancias
+     */
+    public ArrayList<Patron> getInstancias() {
+        return instancias;
+    }
+
+    /**
+     * @param instancias the instancias to set
+     */
+    public void setInstancias(ArrayList<Patron> instancias) {
+        this.instancias = instancias;
+    }
+    
 }
