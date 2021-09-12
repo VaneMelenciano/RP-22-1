@@ -21,18 +21,18 @@ import javax.swing.JOptionPane;
  *
  * @author Vanessa
  */
-public class Instancias {
+public final class Instancia {
     private ArrayList<Patron> instancias;
     //Leer archivo (csv, txt), tokenizar datos, guardar las instancias (de cada renglon)
     
-    public Instancias(){
+    public Instancia(){
+        instancias = new ArrayList<>();
         leerArchivo();
         //instancias = new ArrayList<>();
     }
     
     //Leer el archivo (csc o txt)
     public void leerArchivo(){
-        instancias = new ArrayList<Patron>();
         String aux, texto;
         LinkedList<String> lista = new LinkedList(); //para guardar los datos que se vayan leyendo
         
@@ -71,7 +71,7 @@ public class Instancias {
 
                     double[] vector = new double[lista2.size() - 1]; //declarando un vector para guarda los datos
 
-                    for (int x = 0; x < lista2.size() - 1; x++) { //750
+                    for (int x = 0; x < lista2.size() - 1; x++) { 
                         vector[x] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
                     }
 

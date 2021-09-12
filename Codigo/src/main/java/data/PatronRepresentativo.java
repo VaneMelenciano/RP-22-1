@@ -12,7 +12,7 @@ import data.Patron;
  * @author Vanessa
  */
 // Objetivo: Clase apoyo para hacer más sencillo la acumulación de los elementos, es decir, 
-// ayuda a ir constuyendo ese elemento representativo de cada una de las clases, utilizando la misma estructura de Patron.
+// ayuda a ir construyendo ese elemento representativo de cada una de las clases, utilizando la misma estructura de Patron.
 // 
 public class PatronRepresentativo extends Patron{
     

@@ -5,7 +5,7 @@
  */
 package rp2022;
 
-import Herramientas.Instancias;
+import Herramientas.Instancia;
 import clasesSupervisadas.MinimaDistancia;
 import data.Patron;
 import data.PatronRepresentativo;
@@ -48,14 +48,15 @@ public class rp22 {
         MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
-        Instancias instancias = new Instancias(); //leer los datos (txt) de los datos para entrenamiento
+        Instancia instancias = new Instancia(); //leer los datos (txt) de los datos para entrenamiento
         mc.entrenar(instancias.getInstancias()); //mandamos los datos para entrenar
         
         //CLASIFICACION
-        Instancias instancias2 = new Instancias(); //leer datos (txt) para clasificar
+        Instancia instancias2 = new Instancia(); //leer datos (txt) para clasificar
         mc.clasificar(instancias2.getInstancias()); // se clasifican los datos antes leidos
         
         System.out.println(mc.getMc().toString());
+       
         
     }
 }

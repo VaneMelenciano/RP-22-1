@@ -8,6 +8,7 @@ package clasesSupervisadas;
 import data.Patron;
 import data.PatronRepresentativo;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  *
@@ -33,7 +34,7 @@ public class MinimaDistancia {
     
     public MinimaDistancia(){
         this.representativos = new ArrayList<PatronRepresentativo>();
-        
+        this.mc=null;
     }
     
     //ENTRENAMIENTO
@@ -46,18 +47,10 @@ public class MinimaDistancia {
         for (int x=1; x<instancias.size();x++){ //iniciando el 1, el 0 se agrego arriba
             Patron aux = instancias.get(x);
             
-           boolean encontrado = false; //bandera para saber si exite la clase representativa de la nueva instancia
-           int posicion = 0;
-           for(int i=0; i<representativos.size(); i++){ //recorre los representativos
-               if(representativos.get(i).getClase().equals(aux.getClase())){ //compara la clase de la nueva instancia con la clase de los representativos
-                   encontrado=true;
-                   posicion=i;
-                   break;
-               }
-           }
+           int posicion = buscarClase(aux); //busca si su clase ya existe
            
-            if(encontrado){
-                //si exite agrega ese elemento como uno representativo
+            if(posicion!=-1){
+                //si exite agrega ese elemento al representativo correspondiente
                 representativos.get(posicion).acumular(aux);
             }
             else{
@@ -75,19 +68,25 @@ public class MinimaDistancia {
     public void clasificar(Patron p){
         //- Recibir el patron "desconocidos" a clasificar = p
         //calcular la distancia con los patrones representativos
-        double minDistancia = distancia(p.getVector(), representativos.get(0).getVector());
+        //System.out.println("\n" + Arrays.toString(p.getVector()) + "\n Clase: " + p.getClase());
+        double minDistancia = distancia(p.getVector(), this.representativos.get(0).getVector());
+        //System.out.println("minDistancia: " + minDistancia + "    a:   "+this.representativos.get(0).getClase());
         int iRepresentativo = 0; //posicion del patron representativo donde corresponde el nuevo patron
         //calcular la distancia entre el vector del nuevo patron con los representativos
-        for(int y=1; y<representativos.size(); y++){
-            double disAux = distancia(p.getVector(), representativos.get(y).getVector());
+        for(int y=1; y<this.representativos.size(); y++){
+            double disAux = distancia(p.getVector(), this.representativos.get(y).getVector());
+            //System.out.println("minDistancia: " + disAux+ "    a:   "+this.representativos.get(y).getClase());
             if(minDistancia > disAux){
                 minDistancia = disAux;
                 iRepresentativo = y;
             }
         }
+         
+        
         //agregar el nuevo patron a la clase donde exista menos distancia entre sus vectores, y volver a calcular el promedio con la nueva instancia acumulada
         p.setClaseResultante(representativos.get(iRepresentativo).getClase()); //le da el nombre de su "ClaseResultante" al patron que se calificó
         
+        //System.out.println("DistanciaMenor: " + minDistancia);System.out.print("   ClaseResultante: " +p.getClaseResultante() +"\n\n");
     }
     
     public void clasificar(ArrayList<Patron> patrones) { //En caso de recibir una lista de patrones, va clasificando uno por uno
@@ -109,6 +108,21 @@ public class MinimaDistancia {
         }
         dis = Math.sqrt(dis);
         return dis;
+    }
+    
+    public int buscarClase(Patron aux){
+        int posicion=-1;
+        
+        boolean encontrado = false; //bandera para saber si exite la clase representativa de la nueva instancia
+           for(int i=0; i<representativos.size(); i++){ //recorre los representativos
+               if(representativos.get(i).getClase().equals(aux.getClase())){ //compara la clase de la nueva instancia con la clase de los representativos
+                   encontrado=true;
+                   posicion=i;
+                   break;
+               }
+           }
+           
+        return posicion;
     }
 
     /**
