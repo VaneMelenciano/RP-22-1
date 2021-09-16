@@ -68,14 +68,11 @@ public class MinimaDistancia {
     public void clasificar(Patron p){
         //- Recibir el patron "desconocidos" a clasificar = p
         //calcular la distancia con los patrones representativos
-        //System.out.println("\n" + Arrays.toString(p.getVector()) + "\n Clase: " + p.getClase());
         double minDistancia = distancia(p.getVector(), this.representativos.get(0).getVector());
-        //System.out.println("minDistancia: " + minDistancia + "    a:   "+this.representativos.get(0).getClase());
         int iRepresentativo = 0; //posicion del patron representativo donde corresponde el nuevo patron
         //calcular la distancia entre el vector del nuevo patron con los representativos
         for(int y=1; y<this.representativos.size(); y++){
             double disAux = distancia(p.getVector(), this.representativos.get(y).getVector());
-            //System.out.println("minDistancia: " + disAux+ "    a:   "+this.representativos.get(y).getClase());
             if(minDistancia > disAux){
                 minDistancia = disAux;
                 iRepresentativo = y;

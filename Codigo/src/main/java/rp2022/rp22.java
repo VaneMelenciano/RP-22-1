@@ -6,10 +6,12 @@
 package rp2022;
 
 import Herramientas.Instancia;
+import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import data.Patron;
 import data.PatronRepresentativo;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -17,35 +19,7 @@ import java.util.ArrayList;
  */
 public class rp22 {
     public static void main(String[] args){
-        /*Patron p1 = new Patron("", new double []{2,1,4.5,6.7});
-        Patron p2 = new Patron("", new double []{3,10,4.5,9.7});
-        Patron p3 = new Patron("", new double []{11,12,4.5,6.7});
-        Patron p4 = new Patron("", new double []{5,6.7,1.5,5.7});
-    
-        PatronRepresentativo pr = new PatronRepresentativo("", new double[] {0,0,0,0});
-        pr.acumular(p1);
-        pr.acumular(p2);
-        pr.acumular(p3);
-        pr.acumular(p4);
-        pr.promediar();
-        System.out.println();*/
-        /*Instancias.leerArchivo();
-        MinimaDistancia minD = new MinimaDistancia();
-        minD.entrenar(Instancias.getInstancias());
-        ArrayList<Patron> patrones = new ArrayList<Patron>();
-        Patron p1 = new Patron(new double []{5,9,1,0});
-        Patron p2 = new Patron(new double []{3,8,7,6});
-        Patron p3 = new Patron(new double []{1,2,3,4});
-        Patron p4 = new Patron(new double []{6,7,0,1});
-        Patron p5 = new Patron(new double []{3,4,3,2});
-        patrones.add(p1);
-        patrones.add(p2);
-        patrones.add(p3);
-        patrones.add(p4);
-        patrones.add(p5);
-        minD.clasificar(patrones);
-        System.out.println();*/
-        MinimaDistancia mc = new MinimaDistancia();
+        /*MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
         Instancia instancias = new Instancia(); //leer los datos (txt) de los datos para entrenamiento
@@ -55,7 +29,27 @@ public class rp22 {
         Instancia instancias2 = new Instancia(); //leer datos (txt) para clasificar
         mc.clasificar(instancias2.getInstancias()); // se clasifican los datos antes leidos
         
-        System.out.println(mc.getMc().toString());
+        System.out.println(mc.getMc().toString());*/
+        
+        
+        /* Entrenado y clasificando todo con Iris
+        K =1: 100%
+        K =2: 96%
+        K =3: 96%
+        K =4: 97%
+        K =5: 98%
+        K =6: 97%
+        */
+        KNN knn = new KNN(6);  
+        //ENTRENAMIENTO
+        Instancia instancias = new Instancia(); //leer los datos (txt) de los datos para entrenamiento
+        knn.entrenar(instancias.getInstancias()); //mandamos los datos para entrenar
+        
+        //CLASIFICACION
+        //Instancia instancias2 = new Instancia(); //leer datos (txt) para clasificar
+        knn.clasificar(instancias.getInstancias()); // se clasifican los datos antes leidos
+        
+        System.out.println(knn.getMc().toString());
        
         
     }

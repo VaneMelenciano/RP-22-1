@@ -63,7 +63,7 @@ public final class MatrizConfusion {
         return sumaDiagonal*100/getInstancias().size(); 
     }
 
-    @Override
+    /*@Override
     public String toString() {
         String auxMatriz = "\t";
         for(String clase: clases){ //primera fila
@@ -80,10 +80,10 @@ public final class MatrizConfusion {
         auxMatriz+= "\nInstancias clasificadas correctamente: " + getSumaDiagonal();
         auxMatriz+= " \nEfectividad : " + calcularEfectividad() + "%";
         return auxMatriz;
-    }
+    }*/
     
      //PARA IRIS
-    /*public String toString() {
+    public String toString() {
         String auxMatriz = "\t\t";
         for(String clase: clases){ //primera fila
             auxMatriz+=clase+"\t";
@@ -99,7 +99,7 @@ public final class MatrizConfusion {
         auxMatriz+= "\n" + "Instancias clasificadas correctamente: " + getSumaDiagonal();
         auxMatriz+= " \nEfectividad : " + calcularEfectividad() + "%";
         return auxMatriz;
-    }*/
+    }
     
 
     /**
