@@ -33,13 +33,16 @@ public class KNN {
     }
     
     public void entrenar(ArrayList<Patron> instancias){
-        // Saber cuales son las clases diferentes exiten en las instancias que recibe
+        // Saber cuales son las clases diferentes existen en las instancias que recibe
         this.instancias=instancias;
         for(Patron pa: instancias){
            if(!clases.contains(pa.getClase())){
                clases.add(pa.getClase());
            }
        }
+        /*for(String c: clases){
+            System.out.println(c );
+        }*/
     }
     
     public void clasificar(Patron patron){
@@ -48,7 +51,9 @@ public class KNN {
             distancias.add(new Punto(p.getClase(),distancia(patron.getVector(), p.getVector()))); //calcular distancia del patron a cada instancia guardada
         }
          Collections.sort(distancias); //ordena la lista de puntos por la distancia de menor a mayor
-         
+         /*for(Punto p: distancias){
+             System.out.println(p.getDistancia());
+         }*/
         int conClases[] = new int[this.clases.size()]; //arreglo que va a guardar cuantas veces aparece cada clase, cada clase en una posicion
         
         for(Punto p:distancias){ // recorrer los distancias ordenadas

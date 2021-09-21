@@ -17,7 +17,7 @@ public final class MatrizConfusion {
     private ArrayList<Patron> instancias;
     private int[][] matriz;
     private ArrayList<String> clases; //diferentes clases que recibe en las instancias
-    private int sumaDiagonal; //suma de las instancias clasificadas correctamente
+    private double sumaDiagonal; //suma de las instancias clasificadas correctamente
     
     /*public MatrizConfusion(ArrayList<Patron> instanciass){ //se resiben la lista de datos YA CLASIFICADA, con su clase resultante   
         this.matriz=null;
@@ -63,27 +63,27 @@ public final class MatrizConfusion {
         return sumaDiagonal*100/getInstancias().size(); 
     }
 
-    /*@Override
+    @Override
     public String toString() {
         String auxMatriz = "\t";
         for(String clase: clases){ //primera fila
-            auxMatriz+=clase+"\t\t";
+            auxMatriz+=clase+"\t";
         }
          auxMatriz+="\n";
         for(int i=0;i<clases.size();i++){
                 auxMatriz+=clases.get(i)+"\t";
             for(int j=0;j<clases.size();j++){
-             auxMatriz+=getMatriz()[i][j]+"\t\t";
+             auxMatriz+=getMatriz()[i][j]+"\t";
             }
             auxMatriz+="\n";
         }
         auxMatriz+= "\nInstancias clasificadas correctamente: " + getSumaDiagonal();
         auxMatriz+= " \nEfectividad : " + calcularEfectividad() + "%";
         return auxMatriz;
-    }*/
+    }
     
      //PARA IRIS
-    public String toString() {
+    /*public String toString() {
         String auxMatriz = "\t\t";
         for(String clase: clases){ //primera fila
             auxMatriz+=clase+"\t";
@@ -99,7 +99,7 @@ public final class MatrizConfusion {
         auxMatriz+= "\n" + "Instancias clasificadas correctamente: " + getSumaDiagonal();
         auxMatriz+= " \nEfectividad : " + calcularEfectividad() + "%";
         return auxMatriz;
-    }
+    }*/
     
 
     /**
@@ -147,7 +147,7 @@ public final class MatrizConfusion {
     /**
      * @return the sumaDiagonal
      */
-    public int getSumaDiagonal() {
+    public double getSumaDiagonal() {
         return sumaDiagonal;
     }
 
