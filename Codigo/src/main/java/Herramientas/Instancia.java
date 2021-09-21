@@ -21,12 +21,15 @@ import javax.swing.JOptionPane;
  *
  * @author Vanessa
  */
-public final class Instancia {
+public class Instancia {
     private ArrayList<Patron> instancias;
     //Leer archivo (csv, txt), tokenizar datos, guardar las instancias (de cada renglon)
     
-    public Instancia(){
+    private int ordenDeClase; //si la clase se encuentra al final de cada instancia, es 0. Si la clase está al principio, es 1
+    
+    public Instancia(int orden){
         instancias = new ArrayList<>();
+        this.ordenDeClase=orden;
         leerArchivo();
         //instancias = new ArrayList<>();
     }
@@ -38,10 +41,10 @@ public final class Instancia {
         
         
         try {
-            JFileChooser file = new JFileChooser(); //indicar el archivo que vamos a abrir
+            JFileChooser file = new JFileChooser(); //llamamos el metodo que permite cargar la ventana
             file.setCurrentDirectory(new File("./"));
             file.showOpenDialog(file);
-            //Leer el archivo abierto
+            //Abre el archivo
             File abre = file.getSelectedFile();
 
             //recorremos el archivo y lo leemos
@@ -61,25 +64,48 @@ public final class Instancia {
                 ArrayList<String> lista2 = new ArrayList<>(); //un renglon
                 String clase = "";
                 
-                for (int i = 0; i < lista.size(); i++) { 
-                    
-                    StringTokenizer tokens = new StringTokenizer(lista.get(i), ","); //va separando los renglones guardado en la lista, por las comas
+                if(this.ordenDeClase==0){ //la clase está al final de la instancia
+                    for (int i = 0; i < lista.size(); i++) { 
 
-                    while (tokens.hasMoreTokens()) { //mientras existan tokens (renglones)
-                        lista2.add(tokens.nextToken()); //guarda cada dato del renglo en la lista2
+                        StringTokenizer tokens = new StringTokenizer(lista.get(i), ","); //va separando los renglones guardado en la lista, por las comas
+
+                        while (tokens.hasMoreTokens()) { //mientras existan tokens (renglones)
+                            lista2.add(tokens.nextToken()); //guarda cada dato del renglo en la lista2
+                        }
+
+                        double[] vector = new double[lista2.size() - 1]; //declarando un vector para guarda los datos
+
+                        for (int x = 0; x < lista2.size() - 1; x++) { 
+                            vector[x] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
+                        }
+
+                        clase = lista2.get(lista2.size()-1); //el ultimo de la lista lo toma como la clase
+                        instancias.add(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
+
+                        lista2.clear();
+
                     }
+                }else{ //la clase está al principio de la instancia
+                    for (int i = 0; i < lista.size(); i++) { 
 
-                    double[] vector = new double[lista2.size() - 1]; //declarando un vector para guarda los datos
+                        StringTokenizer tokens = new StringTokenizer(lista.get(i), ","); //va separando los renglones guardado en la lista, por las comas
 
-                    for (int x = 0; x < lista2.size() - 1; x++) { 
-                        vector[x] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
+                        while (tokens.hasMoreTokens()) { //mientras existan tokens (renglones)
+                            lista2.add(tokens.nextToken()); //guarda cada dato del renglo en la lista2
+                        }
+                        clase = lista2.get(0); //el primero de la lista lo toma como la clase
+                        
+                        double[] vector = new double[lista2.size() - 1]; //declarando un vector para guarda los datos
+
+                        for (int x = 1, j=0; x < lista2.size() && j<lista2.size()-1; x++, j++) { 
+                            vector[j] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
+                        }
+
+                        
+                        instancias.add(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
+
+                        lista2.clear();
                     }
-
-                    clase = lista2.get(lista2.size()-1); //el ultimo de la lista lo toma como la clase
-                    instancias.add(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
-                    
-                    lista2.clear();
-
                 }
           
             }
