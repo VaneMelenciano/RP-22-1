@@ -16,20 +16,31 @@ import java.util.LinkedList;
 import java.util.StringTokenizer;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import Herramientas.Instancias;
 
 /**
  *
  * @author Vanessa
  */
-public class Instancia {
-    private ArrayList<Patron> instancias;
+public class Tokenizador {
+    //lee datos de un archivo, los tokeniza (con la clase en la primera posición o el la última), y los guarda en una lista de instancias
+    //de tipo Patron, cada instancia tiene su vector y clase original
+    
+    //private ArrayList<Patron> instancias;
+    private Instancias instancias;
     //Leer archivo (csv, txt), tokenizar datos, guardar las instancias (de cada renglon)
     
     private int ordenDeClase; //si la clase se encuentra al final de cada instancia, es 0. Si la clase está al principio, es 1
     
-    public Instancia(int orden){
-        instancias = new ArrayList<>();
+    public Tokenizador(int orden){
+        //instancias = new ArrayList<>();
+        instancias = new Instancias();
         this.ordenDeClase=orden;
+        leerArchivo();
+    }
+    public Tokenizador(){ //si no recibe el número de orden, toma automaticamente 0, considerando que la clase está al final
+        instancias = new Instancias();
+        this.ordenDeClase=0;
         leerArchivo();
         //instancias = new ArrayList<>();
     }
@@ -80,7 +91,7 @@ public class Instancia {
                         }
 
                         clase = lista2.get(lista2.size()-1); //el ultimo de la lista lo toma como la clase
-                        instancias.add(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
+                        instancias.agregarPatron(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
 
                         lista2.clear();
 
@@ -100,9 +111,7 @@ public class Instancia {
                         for (int x = 1, j=0; x < lista2.size() && j<lista2.size()-1; x++, j++) { 
                             vector[j] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
                         }
-
-                        
-                        instancias.add(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
+                        instancias.agregarPatron(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
 
                         lista2.clear();
                     }
@@ -121,14 +130,14 @@ public class Instancia {
     /**
      * @return the instancias
      */
-    public ArrayList<Patron> getInstancias() {
+    public Instancias getInstancias() {
         return instancias;
     }
 
     /**
      * @param instancias the instancias to set
      */
-    public void setInstancias(ArrayList<Patron> instancias) {
+    public void setInstancias(Instancias instancias) {
         this.instancias = instancias;
     }
     

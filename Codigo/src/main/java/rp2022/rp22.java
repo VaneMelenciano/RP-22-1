@@ -5,7 +5,8 @@
  */
 package rp2022;
 
-import Herramientas.Instancia;
+import Herramientas.GeneradorInstancias;
+import Herramientas.Tokenizador;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import data.Patron;
@@ -20,18 +21,18 @@ import java.util.Collections;
  */
 public class rp22 {
     public static void main(String[] args){
-        //Minima Distancia
+        /*//Minima Distancia
         MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
-        Instancia instancias = new Instancia(1); //leer los datos (txt) de los datos para entrenamiento
-        mc.entrenar(instancias.getInstancias()); //mandamos los datos para entrenar
+        Tokenizador datos = new Tokenizador(); //leer los datos (txt) de los datos para entrenamiento
+        mc.entrenar(datos.getInstancias().getPatrones()); //mandamos los datos para entrenar
         
         //CLASIFICACION
         //Instancia instancias2 = new Instancia(1); //leer datos (txt) para clasificar
-        mc.clasificar(instancias.getInstancias()); // se clasifican los datos antes leidos
+        mc.clasificar(datos.getInstancias().getPatrones()); // se clasifican los datos antes leidos
         
-        System.out.println(mc.getMc().toString());
+        System.out.println(mc.getMc().toString());*/
         
         //KNN
         /* Entrenado y clasificando todo con Iris
@@ -72,5 +73,13 @@ public class rp22 {
             System.out.println(knn.getMc().toString() + "\n");
         }
         System.out.println();*/
+        
+        //Generador de Instancias
+        int caracteristicas[] = {1, 2, 3};
+        Tokenizador t = new Tokenizador();
+        GeneradorInstancias gi = new GeneradorInstancias(t.getInstancias());
+        gi.generarInstancia(caracteristicas, 70, "PRIMEROS"); //
+        System.out.println();
+        
     }
 }

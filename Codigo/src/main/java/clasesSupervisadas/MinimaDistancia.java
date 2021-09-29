@@ -5,6 +5,7 @@
  */
 package clasesSupervisadas;
 
+import Herramientas.MatrizConfusion;
 import data.Patron;
 import data.PatronRepresentativo;
 import java.util.ArrayList;
@@ -94,7 +95,6 @@ public class MinimaDistancia {
         mc = new MatrizConfusion(); //se mandan los patrones ya clasificados para crear la matriz de confusion
         mc.construirMatriz(patrones);
        //los patrones que mandamos, tiene ya su clase resultante y clase original
-       
     }
     
     public static double distancia(double[] v1, double[] v2) {

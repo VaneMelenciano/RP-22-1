@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package clasesSupervisadas;
+package Herramientas;
 
 import data.Patron;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Vanessa
  */
-public final class MatrizConfusion {
+public class MatrizConfusion {
     
     private ArrayList<Patron> instancias;
     private int[][] matriz;

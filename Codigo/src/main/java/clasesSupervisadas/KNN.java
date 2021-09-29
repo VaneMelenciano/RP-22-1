@@ -5,6 +5,7 @@
  */
 package clasesSupervisadas;
 
+import Herramientas.MatrizConfusion;
 import Herramientas.Punto;
 import data.Patron;
 import java.util.ArrayList;

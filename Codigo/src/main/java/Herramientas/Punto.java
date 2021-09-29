@@ -11,7 +11,7 @@ import java.util.Arrays;
  * @author Vanessa
  */
 public class Punto implements Comparable<Punto>{
-//public class Punto{
+//Clase que ayuda en la clasificación Knn
     private String clase;
     private double distancia;
     public Punto(){
