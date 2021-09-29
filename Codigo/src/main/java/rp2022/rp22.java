@@ -75,10 +75,17 @@ public class rp22 {
         System.out.println();*/
         
         //Generador de Instancias
-        int caracteristicas[] = {1, 2, 3};
+        int caracteristicas[] = {0, 1};
         Tokenizador t = new Tokenizador();
         GeneradorInstancias gi = new GeneradorInstancias(t.getInstancias());
-        gi.generarInstancia(caracteristicas, 70, "PRIMEROS"); //
+        gi.generarInstancia(caracteristicas, 70, "PRIMEROS");
+        GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+        gi1.generarInstancia(caracteristicas, 70, "RANDOM");
+        GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
+        gi2.generarInstancia(caracteristicas, 70, "ULTIMOS");
+        System.out.print(gi.getNuevasInstancias().getNumPatrones() + "   ");
+        System.out.print(gi1.getNuevasInstancias().getNumPatrones() + "   ");
+        System.out.print(gi2.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.println();
         
     }
