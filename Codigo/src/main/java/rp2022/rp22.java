@@ -5,12 +5,13 @@
  */
 package rp2022;
 
+import Herramientas.Factor;
 import Herramientas.GeneradorInstancias;
 import Herramientas.Tokenizador;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
-import data.Patron;
-import data.PatronRepresentativo;
+import modelos.Patron;
+import modelos.PatronRepresentativo;
 import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,14 +79,17 @@ public class rp22 {
         int caracteristicas[] = {0, 1};
         Tokenizador t = new Tokenizador();
         GeneradorInstancias gi = new GeneradorInstancias(t.getInstancias());
-        gi.generarInstancia(caracteristicas, 70, "PRIMEROS");
+        gi.generarInstancia(caracteristicas, 70, Factor.PRIMEROS);
         GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
-        gi1.generarInstancia(caracteristicas, 70, "RANDOM");
+        gi1.generarInstancia(caracteristicas, 70, Factor.RANDOM);
         GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
-        gi2.generarInstancia(caracteristicas, 70, "ULTIMOS");
+        gi2.generarInstancia(caracteristicas, 70, Factor.ULTIMOS);
+        GeneradorInstancias gi3 = new GeneradorInstancias(t.getInstancias());
+        gi3.generarInstancia(caracteristicas, 70, Factor.ENMEDIO);
         System.out.print(gi.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi1.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi2.getNuevasInstancias().getNumPatrones() + "   ");
+        System.out.print(gi3.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.println();
         
     }

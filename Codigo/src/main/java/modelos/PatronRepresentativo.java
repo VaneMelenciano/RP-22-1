@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package data;
+package modelos;
 
-import data.Patron;
+import modelos.Patron;
 
 /**
  *

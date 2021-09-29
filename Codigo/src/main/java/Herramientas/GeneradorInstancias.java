@@ -5,7 +5,7 @@
  */
 package Herramientas;
 
-import data.Patron;
+import modelos.Patron;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -13,6 +13,10 @@ import java.util.Random;
  *
  * @author Vanessa
  * Clase para seleccionar cierta cantidad de instancias, del total recibidas
+ * 
+ * El factor que recibe son de donde se borran las instancias
+ * El porcentaje es el total de instancias que se decea conservar
+ * Las caracteristicas, son las que se desean conservar en cada instancia
  */
 
 public class GeneradorInstancias { 
@@ -25,32 +29,32 @@ public class GeneradorInstancias {
     }
     
     //las caracteristicas son las que quiere tomar de los vectores de cada patron
-    public void generarInstancia(int[] caracteristicas, double porcentaje, String factor){
+    public void generarInstancia(int[] caracteristicas, double porcentaje, Factor factor){
          filtrarCaracteristicas(caracteristicas); //caracteristicas de las instancias originales ya filtradas y guardadas en un nuevo ArrayList
          factor(porcentaje, factor);
     }
-    public void generarInstancia(double porcentaje, String factor){ //sin filtrado de caracteristicas
+    public void generarInstancia(double porcentaje, Factor factor){ //sin filtrado de caracteristicas
         factor(porcentaje, factor);
     }
     public void generarInstancia(double porcentaje){ //sin filtrado de caracteristicas y factor automatico RANDOM
-        factor(porcentaje, "RANDOM");
+        factor(porcentaje, Factor.RANDOM);
     }
     
-    public void factor(double porcentaje, String factor){
+    public void factor(double porcentaje, Factor factor){
         switch(factor){
-           case "RANDOM":{
+           case RANDOM:{
                eliminarAleatorio(porcentaje);
                break;
            }
-           case "PRIMEROS":{
+           case PRIMEROS:{
                eliminarPrimeros(porcentaje);
            break;
            }
-           case "ENMEDIO":{
+           case ENMEDIO:{
                eliminarEnMedio(porcentaje);
                break;
            }
-           case "ULTIMOS":{
+           case ULTIMOS:{
                eliminarUltimos(porcentaje);
            break;
            }
@@ -61,6 +65,10 @@ public class GeneradorInstancias {
          for(Patron p: this.instanciasOriginales.getPatrones()){ //recorre los patrones de las instancias originales
              double[] vector = p.getVector(); //vector del patron original
              double[] nuevoVector = new double[caracteristicas.length]; //nuevo vector que tendrá solo las caracteristicas que queremos
+             if(caracteristicas.length>vector.length || caracteristicas[caracteristicas.length-1]>vector.length ){
+                 //compruba que las caracteristicas que se desean seleccionar, esten dentro del margen de los atributos del vector original
+                 System.out.println("Selección de características incorrecto");
+             }
              for(int i=0; i < caracteristicas.length; i++){
                nuevoVector[i]=vector[caracteristicas[i]];
              } 
@@ -84,7 +92,25 @@ public class GeneradorInstancias {
     }
     
     public void eliminarEnMedio(double porcentaje){
-        
+        for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente
+            //System.out.println("i: " + i );
+            int cantidadEliminar = calculaCantidad(i, porcentaje); //numero de instancia a eliminar 
+            int elementos = this.instanciasOriginales.getCantidadPorClase().get(i);
+            int posMin = (int)Math.round((elementos-cantidadEliminar)/2) + nMinimo(i);
+           // int posMin = nMinimo(i); //posicion minima y maxima de las instancias que se van a eliminar
+            /*System.out.print("  elementos: " + elementos);
+            System.out.println(" - " + cantidadEliminar + " = " + (elementos-cantidadEliminar) + "/2 = " + (int)Math.round((elementos-cantidadEliminar)/2));
+            System.out.println("   + " + nMinimo(i) + " = " + posMin);*/
+            //System.out.println("   "+posMin);
+            for (int j = 0; j < cantidadEliminar; j++) {
+                //int pos =(int)(Math.random()*(posMax-posMin))+posMin; //posicion aleatoria entre el rango predefinido
+                //System.out.println(this.instanciasOriginales.getPatrones().get(posMin).getClase() + "  " + this.instanciasOriginales.getPatrones().get(posMin).getVector()[1]);
+                //System.out.println("  pos: " + posMin);
+                this.nuevasInstancias.eliminarPatron(posMin);
+                
+                posMin++;
+            }
+        }
     }
     public void eliminarUltimos(double porcentaje){
         for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente

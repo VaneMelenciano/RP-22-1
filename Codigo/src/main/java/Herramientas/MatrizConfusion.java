@@ -5,7 +5,7 @@
  */
 package Herramientas;
 
-import data.Patron;
+import modelos.Patron;
 import java.util.ArrayList;
 
 /**

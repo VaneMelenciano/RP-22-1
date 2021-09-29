@@ -6,8 +6,8 @@
 package clasesSupervisadas;
 
 import Herramientas.MatrizConfusion;
-import data.Patron;
-import data.PatronRepresentativo;
+import modelos.Patron;
+import modelos.PatronRepresentativo;
 import java.util.ArrayList;
 import java.util.Arrays;
 

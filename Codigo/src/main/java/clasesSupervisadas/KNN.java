@@ -6,8 +6,8 @@
 package clasesSupervisadas;
 
 import Herramientas.MatrizConfusion;
-import Herramientas.Punto;
-import data.Patron;
+import modelos.Punto;
+import modelos.Patron;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
