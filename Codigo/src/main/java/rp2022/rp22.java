@@ -86,10 +86,10 @@ public class rp22 {
         gi2.generarInstancia(caracteristicas, 70, Factor.ULTIMOS);
         GeneradorInstancias gi3 = new GeneradorInstancias(t.getInstancias());
         gi3.generarInstancia(caracteristicas, 70, Factor.ENMEDIO);
-        System.out.print(gi.getNuevasInstancias().getNumPatrones() + "   ");
+        /*System.out.print(gi.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi1.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi2.getNuevasInstancias().getNumPatrones() + "   ");
-        System.out.print(gi3.getNuevasInstancias().getNumPatrones() + "   ");
+        System.out.print(gi3.getNuevasInstancias().getNumPatrones() + "   ");*/
         System.out.println();
         
     }

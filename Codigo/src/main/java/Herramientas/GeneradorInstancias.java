@@ -61,7 +61,7 @@ public class GeneradorInstancias {
            default:{System.out.println("No se reconocer el factor de selección");}
        }
     }
-    public void filtrarCaracteristicas(int[] caracteristicas){ //filtrado
+    public void filtrarCaracteristicas(int[] caracteristicas){ 
          for(Patron p: this.instanciasOriginales.getPatrones()){ //recorre los patrones de las instancias originales
              double[] vector = p.getVector(); //vector del patron original
              double[] nuevoVector = new double[caracteristicas.length]; //nuevo vector que tendrá solo las caracteristicas que queremos
@@ -69,7 +69,7 @@ public class GeneradorInstancias {
                  //compruba que las caracteristicas que se desean seleccionar, esten dentro del margen de los atributos del vector original
                  System.out.println("Selección de características incorrecto");
              }
-             for(int i=0; i < caracteristicas.length; i++){
+             for(int i=0; i < caracteristicas.length; i++){//filtrado
                nuevoVector[i]=vector[caracteristicas[i]];
              } 
              Patron nuevoPatron = new Patron(p.getClase(), nuevoVector);
@@ -80,12 +80,8 @@ public class GeneradorInstancias {
         for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente
             int cantidadEliminar = calculaCantidad(i, porcentaje); //numero de instancia a eliminar 
             int posMin = nMinimo(i); //posicion minima y maxima de las instancias que se van a eliminar
-            //System.out.println("   "+posMin);
             for (int j = 0; j < cantidadEliminar; j++) {
-                //int pos =(int)(Math.random()*(posMax-posMin))+posMin; //posicion aleatoria entre el rango predefinido
-                //System.out.println(this.instanciasOriginales.getPatrones().get(posMin).getClase() + "  " + this.instanciasOriginales.getPatrones().get(posMin).getVector()[1]);
                 this.nuevasInstancias.eliminarPatron(posMin);
-                //System.out.println("   pos: " + pos);
                 posMin++;
             }
         }
@@ -93,37 +89,22 @@ public class GeneradorInstancias {
     
     public void eliminarEnMedio(double porcentaje){
         for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente
-            //System.out.println("i: " + i );
             int cantidadEliminar = calculaCantidad(i, porcentaje); //numero de instancia a eliminar 
             int elementos = this.instanciasOriginales.getCantidadPorClase().get(i);
-            int posMin = (int)Math.round((elementos-cantidadEliminar)/2) + nMinimo(i);
-           // int posMin = nMinimo(i); //posicion minima y maxima de las instancias que se van a eliminar
-            /*System.out.print("  elementos: " + elementos);
-            System.out.println(" - " + cantidadEliminar + " = " + (elementos-cantidadEliminar) + "/2 = " + (int)Math.round((elementos-cantidadEliminar)/2));
-            System.out.println("   + " + nMinimo(i) + " = " + posMin);*/
-            //System.out.println("   "+posMin);
+            int posMin = (int)Math.round((elementos-cantidadEliminar)/2) + nMinimo(i); //calcula una posicion donde iniciar a eliminar que se encuentre en medio
+           
             for (int j = 0; j < cantidadEliminar; j++) {
-                //int pos =(int)(Math.random()*(posMax-posMin))+posMin; //posicion aleatoria entre el rango predefinido
-                //System.out.println(this.instanciasOriginales.getPatrones().get(posMin).getClase() + "  " + this.instanciasOriginales.getPatrones().get(posMin).getVector()[1]);
-                //System.out.println("  pos: " + posMin);
                 this.nuevasInstancias.eliminarPatron(posMin);
-                
                 posMin++;
             }
         }
     }
     public void eliminarUltimos(double porcentaje){
         for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente
-            //System.out.println("i: " + i);
             int cantidadEliminar = calculaCantidad(i, porcentaje); //numero de instancia a eliminar 
-            //System.out.println("   CantidadE: " + cantidadEliminar );
             int posMax = nMaximo(i)-1; //posicion minima y maxima de las instancias que se van a eliminar
-            //System.out.println("   "+posMax);
-            //System.out.println("   auxRan: " + auxRan + "\telemento: " + this.instanciasOriginales.getPatrones().get(auxRan-1).getVector()[0] +"\n   auxRan1: " + auxRan1 + "\telemento: " + this.instanciasOriginales.getPatrones().get(auxRan1-1).getVector()[0] );
-            for (int j = 0; j < cantidadEliminar; j++) {
-                //int pos =(int)(Math.random()*(posMax-posMin))+posMin; //posicion aleatoria entre el rango predefinido
-                nuevasInstancias.eliminarPatron(posMax);
-                //System.out.println("   pos: " + pos);
+            for (int j = 0; j < cantidadEliminar; j++) { 
+                nuevasInstancias.eliminarPatron(posMax);//posicion aleatoria entre el rango predefinido
                 posMax--;
             }
         }
@@ -131,15 +112,11 @@ public class GeneradorInstancias {
     public void eliminarAleatorio(double porcentaje){
         Random ran = new Random(); 
             for (int i = this.instanciasOriginales.getNumClases() - 1; i >= 0; i--) { //i recorre el numero de clases de forma descendiente
-                //System.out.println("x: " + x);
                 int cantidadEliminar = calculaCantidad(i, porcentaje); //numero de instancia a eliminar 
-                //System.out.println("   CantidadE: " + cantidadEliminar);
                 int posMax = nMaximo(i), posMin = nMinimo(i); //posicion minima y maxima de las instancias que se van a eliminar
-                //System.out.println("   auxRan: " + auxRan + "\telemento: " + this.instanciasOriginales.getPatrones().get(auxRan-1).getVector()[0] +"\n   auxRan1: " + auxRan1 + "\telemento: " + this.instanciasOriginales.getPatrones().get(auxRan1-1).getVector()[0] );
                 for (int j = 0; j < cantidadEliminar; j++) {
                     int pos =(int)(Math.random()*(posMax-posMin))+posMin; //posicion aleatoria entre el rango predefinido
                     nuevasInstancias.eliminarPatron(pos);
-                    //System.out.println("   pos: " + pos);
                     posMax--;
                 }
             }
@@ -160,9 +137,7 @@ public class GeneradorInstancias {
     }
     public int calculaCantidad(int posClase, double porcentaje) { 
         int elementosClase = this.instanciasOriginales.getCantidadPorClase().get(posClase); //numero de elementos de la clase que está en la posicion posClase
-        //System.out.println("   Clase " + this.instanciasOriginales.getClases().get(posClase) + ":  " + elementosClase);
         int aEliminar = (int)Math.round((elementosClase*Math.abs(100-porcentaje))/100); //numero de instacias a eliminar
-        
         if (aEliminar>=elementosClase){
           return elementosClase-1;
         }
