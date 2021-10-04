@@ -137,7 +137,8 @@ public class GeneradorInstancias {
     }
     public int calculaCantidad(int posClase, double porcentaje) { 
         int elementosClase = this.instanciasOriginales.getCantidadPorClase().get(posClase); //numero de elementos de la clase que está en la posicion posClase
-        int aEliminar = (int)Math.round((elementosClase*Math.abs(100-porcentaje))/100); //numero de instacias a eliminar
+        int aEliminar = (int)Math.round((elementosClase*porcentaje)/100); //numero de instacias a eliminar
+        //int aEliminar = (int)Math.round((elementosClase*Math.abs(100-porcentaje))/100); //numero de instacias a eliminar
         if (aEliminar>=elementosClase){
           return elementosClase-1;
         }
