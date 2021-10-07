@@ -22,8 +22,8 @@ import java.util.Collections;
  */
 public class rp22 {
     public static void main(String[] args){
-        /*//Minima Distancia
-        MinimaDistancia mc = new MinimaDistancia();
+        //Minima Distancia
+        /*MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
         Tokenizador datos = new Tokenizador(); //leer los datos (txt) de los datos para entrenamiento
@@ -60,26 +60,26 @@ public class rp22 {
         K =5: 96.0%
         K =6: 95.33%
         */
-        /*Instancia instancias = new Instancia(1); //leer los datos (txt) de los datos para entrenamiento
-        //Instancia instancias2 = new Instancia(); //leer datos (txt) para clasificar
-        for(int k=6; k>0; k--){
+        //Tokenizador datos = new Tokenizador(1); //leer los datos (txt) de los datos para entrenamiento
+        //Tokenizador datos = new Tokenizador(); //leer datos (txt) para clasificar
+        /*for(int k=6; k>0; k--){
             System.out.println(ZonedDateTime.now());
             System.out.println("K: " + k);
             KNN knn = new KNN(k);
 
             //ENTRENAMIENTO
-            knn.entrenar(instancias.getInstancias()); //mandamos los datos para entrenar
+            knn.entrenar(datos.getInstancias().getPatrones()); //mandamos los datos para entrenar
             //CLASIFICACION
-            knn.clasificar(instancias.getInstancias()); // se clasifican los datos antes leidos
+            knn.clasificar(datos.getInstancias().getPatrones()); // se clasifican los datos antes leidos
             System.out.println(knn.getMc().toString() + "\n");
-        }
-        System.out.println();*/
+        }*/
+        System.out.println();
         
         //Generador de Instancias
-        int caracteristicas[] = {0, 1};
+        int caracteristicas[] = {0, 1, 2, 3, 4};
         Tokenizador t = new Tokenizador();
         GeneradorInstancias gi = new GeneradorInstancias(t.getInstancias());
-        gi.generarInstancia(caracteristicas, 30, Factor.PRIMEROS);
+        gi.generarInstancia(caracteristicas, 0, Factor.PRIMEROS);
         GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
         gi1.generarInstancia(caracteristicas, 30, Factor.RANDOM);
         GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
@@ -91,6 +91,9 @@ public class rp22 {
         System.out.print(gi2.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi3.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.println();
-        
+        MinimaDistancia mc = new MinimaDistancia();
+        mc.entrenar(gi1.getNuevasInstancias().getPatrones());
+        mc.clasificar(gi1.getNuevasInstancias().getPatrones());
+        System.out.println(mc.getMc().toString() + "\n");
     }
 }
