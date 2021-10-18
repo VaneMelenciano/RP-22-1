@@ -10,6 +10,7 @@ import Herramientas.GeneradorInstancias;
 import Herramientas.Tokenizador;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
+import clasesSupervisadas.NaiveBayes;
 import modelos.Patron;
 import modelos.PatronRepresentativo;
 import java.time.ZonedDateTime;
@@ -76,10 +77,10 @@ public class rp22 {
         System.out.println();
         
         //Generador de Instancias
-        int caracteristicas[] = {0, 1, 2, 3, 4};
+        /*int caracteristicas[] = {0, 1, 2, 3, 4, 5};
         Tokenizador t = new Tokenizador();
         GeneradorInstancias gi = new GeneradorInstancias(t.getInstancias());
-        gi.generarInstancia(caracteristicas, 0, Factor.PRIMEROS);
+        gi.generarInstancia(caracteristicas, 30, Factor.PRIMEROS);
         GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
         gi1.generarInstancia(caracteristicas, 30, Factor.RANDOM);
         GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
@@ -90,10 +91,252 @@ public class rp22 {
         System.out.print(gi1.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi2.getNuevasInstancias().getNumPatrones() + "   ");
         System.out.print(gi3.getNuevasInstancias().getNumPatrones() + "   ");
+        System.out.println();*/
+        //int c[] = {0};
+        
+
+        /*Genra instancias y hace matriz para calcular
+            el rendimiento de minima distancia con un DataSet, tonando de
+            una en una caracteristicas hasta llegar al numAtributos totales*/
+        /*Tokenizador t = new Tokenizador();
+        int numAtributos = 8;
+        for(int i=1; i<numAtributos; i++){
+            int c[] = new int[i+1]; 
+            c[0] =0;
+            for(int j=1; j<=i; j++){
+                c[j] = j;
+            }
+            for(int k=0; k<=i;k++){
+                System.out.print(c[k]);
+            }
+           System.out.println("\n\t" + (i+1) + " caracteristicas");
+           c[i] = i;
+           GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            MinimaDistancia mc = new MinimaDistancia();
+            mc.entrenar(gi1.getNuevasInstancias().getPatrones());
+            mc.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(mc.getMc().toString() + "\n");
+        }*/
+            //i=0   c = 1234567
+            //i=1   c = 0234567
+            //i=2   c = 0134567
+            //i=3   c = 0124567
+            //i=4   c = 0123567
+            //i=5   c = 0123467
+            //i=6   c = 0123457
+            //i=7   c = 0123456
+        /*Genera instancias y hace matriz para calcular
+          el rendimiento de minima distancia con un DataSet,
+           quitando una caracteristica en cada pasada*/
+       //Tokenizador t = new Tokenizador(1);
+         /*int numAtributos = 8;
+       for(int i=0; i<numAtributos; i++){
+            int c[] = new int[7]; 
+            for(int j=0, p=0; j<7 && p<8;){
+                if(p!=i) {
+                    c[j]=p;
+                   j++;  
+                } p++;
+            }
+            for(int k=0; k<7;k++){
+                System.out.print(c[k]);
+            }System.out.println();
+           System.out.println("\n\tSin la caracteristica " + i);
+           GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            MinimaDistancia mc = new MinimaDistancia();
+            mc.entrenar(gi1.getNuevasInstancias().getPatrones());
+            mc.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(mc.getMc().toString() + "\n");
+        }*/
+       
+       /*Genera instancias y hace matriz para calcular
+            el rendimiento de KNN con un DataSet, tonando de
+            una en una caracteristicas hasta llegar al numAtributos totales*/
+        /*Tokenizador t1 = new Tokenizador();
+        int numAtributos1 = 8;
+        int k=4;
+        for(int i=1; i<numAtributos1; i++){
+            int c[] = new int[i+1]; 
+            c[0] =0;
+            for(int j=1; j<=i; j++){
+                c[j] = j;
+            }
+            for(int l=0; l<=i;l++){
+                System.out.print(c[l]);
+            }
+           System.out.println("\n\t" + (i+1) + " caracteristicas");
+           c[i] = i;
+           GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            KNN knn = new KNN(k);
+            knn.entrenar(gi1.getNuevasInstancias().getPatrones());
+            knn.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(knn.getMc().toString() + "\n");
+        }*/
+            //i=0   c = 1234567
+            //i=1   c = 0234567
+            //i=2   c = 0134567
+            //i=3   c = 0124567
+            //i=4   c = 0123567
+            //i=5   c = 0123467
+            //i=6   c = 0123457
+            //i=7   c = 0123456
+        /*Genera instancias y hace matriz para calcular
+          el rendimiento de KNN con un DataSet,
+           quitando una caracteristica en cada pasada*/
+         /*Tokenizador t = new Tokenizador(1);
+         int numAtributos = 8;
+         int k=4;
+       for(int i=0; i<numAtributos; i++){
+            int c[] = new int[7]; 
+            for(int j=0, p=0; j<7 && p<8;){
+                if(p!=i) {
+                    c[j]=p;
+                   j++;  
+                } p++;
+            }
+            for(int l=0; l<7;l++){
+                System.out.print(c[l]);
+            }System.out.println();
+           System.out.println("\n\tSin la caracteristica " + i);
+           GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+           gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            KNN knn = new KNN(k);
+            knn.entrenar(gi1.getNuevasInstancias().getPatrones());
+            knn.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(knn.getMc().toString() + "\n");
+        }*/
+       
+       /*Genera instancias y hace matriz para calcular
+            el rendimiento de NaiveBayes con un DataSet, tomando de
+            una en una caracteristicas hasta llegar al numAtributos totales*/
+        Tokenizador t = new Tokenizador(1);
+        int numAtributos = 8;
+        for(int i=1; i<numAtributos; i++){
+            int c[] = new int[i+1]; 
+            c[0] =0;
+            for(int j=1; j<=i; j++){
+                c[j] = j;
+            }
+            for(int m=0; m<=i;m++){
+                System.out.print(c[m]);
+            }
+           System.out.println("\n\t" + (i+1) + " caracteristicas");
+           c[i] = i;
+           GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            NaiveBayes nb = new NaiveBayes();
+            nb.entrenar(gi1.getNuevasInstancias());
+            nb.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(nb.getMc().toString() + "\n");
+        }
+
+        /*Genera instancias y hace matriz para calcular
+          el rendimiento de  NaiveBayes con un DataSet,
+           quitando una caracteristica en cada pasada*/
+       //Tokenizador t = new Tokenizador(1);
+         //int numAtributos = 8;
+       for(int i=0; i<numAtributos; i++){
+            int c[] = new int[7]; 
+            for(int j=0, p=0; j<7 && p<8;){
+                if(p!=i) {
+                    c[j]=p;
+                   j++;  
+                } p++;
+            }
+            for(int k=0; k<7;k++){
+                System.out.print(c[k]);
+            }System.out.println();
+           System.out.println("\n\tSin la caracteristica " + i);
+           GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+            NaiveBayes nb = new NaiveBayes();
+            nb.entrenar(gi1.getNuevasInstancias());
+            nb.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(nb.getMc().toString() + "\n");
+        }
+       
+       //Arañas
+        /*Tokenizador t1 = new Tokenizador();
+        int numAtributos1 = 8;
+        int k=3;
+        for(int i=1; i<numAtributos1; i++){
+            int c[] = new int[i+1]; 
+            c[0] =0;
+            for(int j=1; j<=i; j++){
+                c[j] = j;
+            }
+            for(int l=0; l<=i;l++){
+                System.out.print(c[l]);
+            }
+           System.out.println("\n\t" + (i+1) + " caracteristicas");
+           c[i] = i;
+           GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+            
+            System.out.println("\n\t\t" + "Minima Distancia");
+            MinimaDistancia mc = new MinimaDistancia();
+            mc.entrenar(gi1.getNuevasInstancias().getPatrones());
+            mc.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(mc.getMc().toString() + "\n");
+            System.out.println("\n\t\t" + "KNN");
+            KNN knn = new KNN(k);
+            knn.entrenar(gi1.getNuevasInstancias().getPatrones());
+            knn.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(knn.getMc().toString() + "\n");
+            
+        }
+       for(int i=0; i<numAtributos1; i++){
+            int c[] = new int[7]; 
+            for(int j=0, p=0; j<7 && p<8;){
+                if(p!=i) {
+                    c[j]=p;
+                   j++;  
+                } p++;
+            }
+            for(int l=0; l<7;l++){
+                System.out.print(c[l]);
+            }System.out.println();
+           System.out.println("\n\tSin la caracteristica " + i);
+           GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+            gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+           System.out.println("\n\t\t" + "Minima Distancia");
+            MinimaDistancia mc = new MinimaDistancia();
+            mc.entrenar(gi1.getNuevasInstancias().getPatrones());
+            mc.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(mc.getMc().toString() + "\n");
+            System.out.println("\n\t\t" + "KNN");
+            KNN knn = new KNN(k);
+            knn.entrenar(gi1.getNuevasInstancias().getPatrones());
+            knn.clasificar(gi1.getNuevasInstancias().getPatrones());
+            System.out.println(knn.getMc().toString() + "\n");
+        }*/
+        
+        //NaiveBayes
+        /*Tokenizador t1 = new Tokenizador(1);
+        NaiveBayes nb = new NaiveBayes();
+        nb.entrenar(t1.getInstancias());
+        nb.clasificar(t1.getInstancias().getPatrones());
+        //nb.imprimirMatriz(nb.getMatrizPromedio());
+        //nb.imprimirMatriz(nb.getMatrizVarianza());
+        //nb.imprimirMatriz(nb.getDistribucionNormal());
+        System.out.println(nb.getMc().toString() + "\n");
+        //double m[] = {6, 180, 12};
+        //nb.clasificar(new Patron("male", m));*/
+
+        
+        
+        
         System.out.println();
-        MinimaDistancia mc = new MinimaDistancia();
-        mc.entrenar(gi1.getNuevasInstancias().getPatrones());
-        mc.clasificar(gi1.getNuevasInstancias().getPatrones());
-        System.out.println(mc.getMc().toString() + "\n");
     }
 }
+

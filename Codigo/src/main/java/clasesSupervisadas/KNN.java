@@ -18,7 +18,7 @@ import java.util.Comparator;
  * @author Vanessa
  */
 
-
+//K vecinos más cercanos
 public class KNN {
     private ArrayList<String> clases; //diferentes clases que recibe en las instancias
     private MatrizConfusion mc; //para crear la matriz de confusión después de clasificar

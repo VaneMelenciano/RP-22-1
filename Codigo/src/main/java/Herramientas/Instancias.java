@@ -17,6 +17,7 @@ public class Instancias {
     private ArrayList<Patron> patrones; //lista de patrones que fonman las instancias
     private ArrayList<String> clases; //diferentes clases que recibe en las instancias
     private ArrayList<Integer> cantidadPorClase; //guardar cuantas veces aparece cada clase, cada clase en una posicion
+    private int numAtributos;
 
     public Instancias(){
         this.patrones=new ArrayList<>();
@@ -26,6 +27,7 @@ public class Instancias {
     }
     public void agregarPatron(Patron patron){
         patrones.add(patron); //agregar el patron a la lista de patrones
+        this.setNumAtributos(patron.getVector().length);
         if(!clases.contains(patron.getClase())){ //si la clase que tiene este patron, no exite, agrega una nueva clase
                this.clases.add(patron.getClase());
                this.cantidadPorClase.add(0); //agregamos una nueva posicion para la clase
@@ -103,6 +105,20 @@ public class Instancias {
      */
     public int getNumPatrones() {
         return this.patrones.size();
+    }
+
+    /**
+     * @return the numAtributos
+     */
+    public int getNumAtributos() {
+        return numAtributos;
+    }
+
+    /**
+     * @param numAtributos the numAtributos to set
+     */
+    public void setNumAtributos(int numAtributos) {
+        this.numAtributos = numAtributos;
     }
     
     
