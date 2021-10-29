@@ -373,16 +373,15 @@ public class rp22 {
         
         
         //Cmeans
-        System.out.println();
-        Tokenizador t1 = new Tokenizador();
+         Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
         int[] c = {0, 1};
         GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
-               gi1.generarInstancia(c, 0, Factor.ULTIMOS);
+               gi1.generarInstancia(c, 0, Factor.PRIMEROS);
                
-        //Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
-        Cmeans cm = new Cmeans(t1.getInstancias(), 3);
+        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
+        //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
         System.out.println();
         ArrayList<Patron> patrones = cm.getPatrones();
@@ -394,6 +393,7 @@ public class rp22 {
                 //System.out.print(patron.getVector()[k] + "\t");
             System.out.println(patron.getClaseResultante());
         }
+        System.out.println();
     }
 }
 
