@@ -118,7 +118,6 @@ public class MinimaDistancia {
                    break;
                }
            }
-           
         return posicion;
     }
 

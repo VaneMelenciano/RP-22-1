@@ -11,6 +11,7 @@ import Herramientas.Tokenizador;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import clasesSupervisadas.NaiveBayes;
+import clasificacionNoSupervisada.Cmeans;
 import modelos.Patron;
 import modelos.PatronRepresentativo;
 import java.time.ZonedDateTime;
@@ -24,7 +25,7 @@ import java.util.Collections;
 public class rp22 {
     public static void main(String[] args){
         //Minima Distancia
-        /*MinimaDistancia mc = new MinimaDistancia();
+        MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
         Tokenizador datos = new Tokenizador(); //leer los datos (txt) de los datos para entrenamiento
@@ -34,7 +35,7 @@ public class rp22 {
         //Instancia instancias2 = new Instancia(1); //leer datos (txt) para clasificar
         mc.clasificar(datos.getInstancias().getPatrones()); // se clasifican los datos antes leidos
         
-        System.out.println(mc.getMc().toString());*/
+        System.out.println(mc.getMc().toString());
         
         //KNN
         /* Entrenado y clasificando todo con Iris
@@ -212,7 +213,8 @@ public class rp22 {
             knn.clasificar(gi1.getNuevasInstancias().getPatrones());
             System.out.println(knn.getMc().toString() + "\n");
         }*/
-         int porcentaje[] = {65, 50, 0};
+         
+         /*int porcentaje[] = {65, 50, 0};
          int con = 0;
          double maxPor1=0;
          double pC=0;
@@ -220,22 +222,22 @@ public class rp22 {
          Tokenizador t = new Tokenizador();
          for(int o=0; o<3; o++){
          double maxPor=0;
-         String max = "";
+         String max = "";*/
        
        /*Genera instancias y hace matriz para calcular
             el rendimiento de NaiveBayes con un DataSet, tomando de
             una en una caracteristicas hasta llegar al numAtributos totales*/
         //Tokenizador t = new Tokenizador(1);
-        int numAtributos = 32;
+        /*int numAtributos = 32;
         for(int i=1; i<numAtributos; i++){
             int c[] = new int[i+1]; 
             c[0] =0;
             for(int j=1; j<=i; j++){
                 c[j] = j;
             }
-            /*for(int m=0; m<=i;m++){
-                System.out.print(c[m]);
-            }*/
+            //for(int m=0; m<=i;m++){
+                //System.out.print(c[m]);
+            //}
             String r = (i+1) + " caracteristicas";
            System.out.println("\n\t" + r);
            c[i] = i;
@@ -254,14 +256,14 @@ public class rp22 {
                 maxPor = nb.getMc().calcularEfectividad();
                 max = r;
             }
-        }
+        }*/
 
         /*Genera instancias y hace matriz para calcular
           el rendimiento de  NaiveBayes con un DataSet,
            quitando una caracteristica en cada pasada*/
        //Tokenizador t = new Tokenizador(1);
          //int numAtributos = 8;
-       for(int i=0; i<numAtributos; i++){
+       /*for(int i=0; i<numAtributos; i++){
             int c[] = new int[numAtributos-1]; 
             for(int j=0, p=0; j<numAtributos-1 && p<numAtributos;){
                 if(p!=i) {
@@ -269,9 +271,9 @@ public class rp22 {
                    j++;  
                 } p++;
             }
-            /*for(int k=0; k<numAtributos-1;k++){
-                System.out.print(c[k]);
-            }System.out.println();*/
+            //for(int k=0; k<numAtributos-1;k++){
+                //System.out.print(c[k]);
+            //}System.out.println();
             String r1 = "Sin la caracteristica " + i;
            System.out.println("\n\t" + r1);
            GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
@@ -299,7 +301,7 @@ public class rp22 {
          }
          
          System.out.println( con);
-         System.out.println("\nMAXIMOOOO\n" + max1 + "\t" + maxPor1 +"\t Con %: " + pC);
+         System.out.println("\nMAXIMOOOO\n" + max1 + "\t" + maxPor1 +"\t Con %: " + pC);*/
        //Arañas
         /*Tokenizador t1 = new Tokenizador();
         int numAtributos1 = 8;
@@ -368,10 +370,16 @@ public class rp22 {
         System.out.println(nb.getMc().toString() + "\n");
         //double m[] = {6, 180, 12};
         //nb.clasificar(new Patron("male", m));*/
-
         
         
-        
+        //Cmeans
+        System.out.println();
+        Tokenizador t1 = new Tokenizador();
+        Cmeans cm = new Cmeans(t1.getInstancias(), 3);
+        cm.clasificar();
+        //double d = 7435.9876543523564;
+        //double roundDbl = Math.round(d*10000.0)/10000.0;
+        //System.out.println("Rounded Double value: "+roundDbl);
         System.out.println();
     }
 }

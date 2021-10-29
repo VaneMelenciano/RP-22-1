@@ -22,7 +22,7 @@ public class PatronRepresentativo extends Patron{
         super(clase, vector);
         this.cantidad = 1;
     }
-    //Constructor que resibe Patron, para usarlo en MinimaDistancia
+    //Constructor que recibe Patron, para usarlo en MinimaDistancia
     public PatronRepresentativo(Patron p) {
         super(p.getVector().length);
         super.setClase(p.getClase());
@@ -52,6 +52,7 @@ public class PatronRepresentativo extends Patron{
     public void promediar(){
         for(int x=0; x<super.getVector().length;x++){
             super.getVector()[x]/=getCantidad();
+            super.getVector()[x] = Math.round(super.getVector()[x]*10000.0)/10000.0; //redondea a 4 decimales
         }
         //Ejemplo
         /*
