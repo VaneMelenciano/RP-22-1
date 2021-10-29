@@ -25,7 +25,7 @@ import java.util.Collections;
 public class rp22 {
     public static void main(String[] args){
         //Minima Distancia
-        MinimaDistancia mc = new MinimaDistancia();
+        /*MinimaDistancia mc = new MinimaDistancia();
         
         //ENTRENAMIENTO
         Tokenizador datos = new Tokenizador(); //leer los datos (txt) de los datos para entrenamiento
@@ -35,7 +35,7 @@ public class rp22 {
         //Instancia instancias2 = new Instancia(1); //leer datos (txt) para clasificar
         mc.clasificar(datos.getInstancias().getPatrones()); // se clasifican los datos antes leidos
         
-        System.out.println(mc.getMc().toString());
+        System.out.println(mc.getMc().toString());*/
         
         //KNN
         /* Entrenado y clasificando todo con Iris
@@ -375,12 +375,25 @@ public class rp22 {
         //Cmeans
         System.out.println();
         Tokenizador t1 = new Tokenizador();
+        //ABCD
+        //AB, AC, AD, BC, BD, CD
+        int[] c = {0, 1};
+        GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+               gi1.generarInstancia(c, 0, Factor.ULTIMOS);
+               
+        //Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
         Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
-        //double d = 7435.9876543523564;
-        //double roundDbl = Math.round(d*10000.0)/10000.0;
-        //System.out.println("Rounded Double value: "+roundDbl);
         System.out.println();
+        ArrayList<Patron> patrones = cm.getPatrones();
+        for(int i=0; i<patrones.size(); i++){
+            Patron patron = patrones.get(i);
+            for(Double d : patron.getVector())
+                System.out.print(d + "\t");
+            //for(int k=0; k<2; k++)
+                //System.out.print(patron.getVector()[k] + "\t");
+            System.out.println(patron.getClaseResultante());
+        }
     }
 }
 
