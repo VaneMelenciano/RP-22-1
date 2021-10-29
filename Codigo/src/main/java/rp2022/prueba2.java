@@ -8,25 +8,34 @@ package rp2022;
 import Herramientas.Factor;
 import Herramientas.GeneradorInstancias;
 import Herramientas.Tokenizador;
-import clasesSupervisadas.KNN;
-import clasesSupervisadas.MinimaDistancia;
 import clasesSupervisadas.NaiveBayes;
-import modelos.Patron;
-import modelos.PatronRepresentativo;
-import java.time.ZonedDateTime;
-import java.util.ArrayList;
-import java.util.Collections;
+
 /**
  *
  * @author Vanessa
  */
-public class prueba {
+public class prueba2 {
     public static void main(String[] args){
-        
-         int porcentaje[] = {65, 50, 0}; //para tener 35%, 50% y 100% de los datos
+     //NaiveBayes
+        /*Tokenizador t1 = new Tokenizador();
+        NaiveBayes nb = new NaiveBayes();
+        nb.entrenar(t1.getInstancias());
+        Tokenizador t11 = new Tokenizador();
+        nb.clasificar(t11.getInstancias().getPatrones());
+        //nb.imprimirMatriz(nb.getMatrizPromedio());
+        //nb.imprimirMatriz(nb.getMatrizVarianza());
+        //nb.imprimirMatriz(nb.getDistribucionNormal());
+        System.out.println(nb.getMc().toString() + "\n");*/
+        //double m[] = {6, 180, 12};
+        //nb.clasificar(new Patron("male", m));
+        /*
+        100= 72.68664563617244%
+        50= Efectividad : 72.10304942166141%
+        35 = Efectividad : 71.79284963196635%
+        */
+        int porcentaje[] = {65, 50, 0}; //para tener 35%, 50% y 100% de los datos
          Tokenizador t = new Tokenizador(); //lee el archivo
         int numAtributos = t.getInstancias().getNumAtributos();
-        System.out.println(numAtributos);
         int w=7;
         while(w>0){
         
@@ -116,19 +125,6 @@ public class prueba {
          
         int filas = resultados.length-1;
         int columnas = resultados[0].length;
-        
-        /*System.out.print("\t\t\t\tWine\n");
-        System.out.println("             \t\t  Entrenando con");
-        System.out.println("             " + "35%\t\t  50%\t\t    100%");
-        for(int i=0; i<filas; i++){
-            System.out.print(descripcion[i]);
-            if((i>=0 && i<=7) || (i>=12 && i<=21))System.out.print(" ");
-            for(int j=0; j<columnas; j++){
-               System.out.print("| " + resultados[i][j] + " ");
-            }  System.out.println();
-        } System.out.println();*/
-        
-        
 
         System.out.print("\t\t\t\tIris\n"); //titulo de la bd
         System.out.println("             \t\t  Entrenando con");

@@ -96,6 +96,30 @@ public class Tokenizador {
                         lista2.clear();
 
                     }
+                    //Para fertility, descartar atributos 0, 5, 7
+                    /*for (int i = 0; i < lista.size(); i++) { 
+
+                        StringTokenizer tokens = new StringTokenizer(lista.get(i), ","); //va separando los renglones guardado en la lista, por las comas
+
+                        while (tokens.hasMoreTokens()) { //mientras existan tokens (renglones)
+                            lista2.add(tokens.nextToken()); //guarda cada dato del renglo en la lista2
+                        }
+
+                        double[] vector = new double[lista2.size() - 4]; //declarando un vector para guarda los datos
+
+                        for (int x = 0, j=0; x < lista2.size() - 1 && j<6; x++) {
+                            if(x!=5 && x!=7 && x!=0){
+                                 vector[j] = Double.parseDouble(lista2.get(x)); //convierte cada elemento de la lista2 en double y lo guarda en el vector
+                                 j++;
+                            }
+                        }
+
+                        clase = lista2.get(lista2.size()-1); //el ultimo de la lista lo toma como la clase
+                        instancias.agregarPatron(new Patron(clase, vector)); //agrega el vector como un nuevo patron a las instancias
+
+                        lista2.clear();
+
+                    }*/
                 }else{ //la clase está al principio de la instancia
                     for (int i = 0; i < lista.size(); i++) { 
 

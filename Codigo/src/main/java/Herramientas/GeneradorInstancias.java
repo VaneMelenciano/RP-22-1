@@ -15,7 +15,7 @@ import java.util.Random;
  * Clase para seleccionar cierta cantidad de instancias, del total recibidas
  * 
  * El factor que recibe son de donde se borran las instancias
- * El porcentaje es el total de instancias que se decea conservar
+ * El porcentaje es el total de instancias que se decea eliminar
  * Las caracteristicas, son las que se desean conservar en cada instancia
  */
 

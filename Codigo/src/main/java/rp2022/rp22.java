@@ -212,30 +212,48 @@ public class rp22 {
             knn.clasificar(gi1.getNuevasInstancias().getPatrones());
             System.out.println(knn.getMc().toString() + "\n");
         }*/
+         int porcentaje[] = {65, 50, 0};
+         int con = 0;
+         double maxPor1=0;
+         double pC=0;
+         String max1 = "";
+         Tokenizador t = new Tokenizador();
+         for(int o=0; o<3; o++){
+         double maxPor=0;
+         String max = "";
        
        /*Genera instancias y hace matriz para calcular
             el rendimiento de NaiveBayes con un DataSet, tomando de
             una en una caracteristicas hasta llegar al numAtributos totales*/
-        Tokenizador t = new Tokenizador(1);
-        int numAtributos = 8;
+        //Tokenizador t = new Tokenizador(1);
+        int numAtributos = 32;
         for(int i=1; i<numAtributos; i++){
             int c[] = new int[i+1]; 
             c[0] =0;
             for(int j=1; j<=i; j++){
                 c[j] = j;
             }
-            for(int m=0; m<=i;m++){
+            /*for(int m=0; m<=i;m++){
                 System.out.print(c[m]);
-            }
-           System.out.println("\n\t" + (i+1) + " caracteristicas");
+            }*/
+            String r = (i+1) + " caracteristicas";
+           System.out.println("\n\t" + r);
            c[i] = i;
            GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
-            gi1.generarInstancia(c, 0, Factor.RANDOM);
+            gi1.generarInstancia(c, porcentaje[o], Factor.RANDOM);
+            
+            GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
+            gi2.generarInstancia(c, 0, Factor.RANDOM);
         
             NaiveBayes nb = new NaiveBayes();
             nb.entrenar(gi1.getNuevasInstancias());
-            nb.clasificar(gi1.getNuevasInstancias().getPatrones());
+            nb.clasificar(gi2.getNuevasInstancias().getPatrones());
             System.out.println(nb.getMc().toString() + "\n");
+            con++;
+            if(nb.getMc().calcularEfectividad() > maxPor){
+                maxPor = nb.getMc().calcularEfectividad();
+                max = r;
+            }
         }
 
         /*Genera instancias y hace matriz para calcular
@@ -244,26 +262,44 @@ public class rp22 {
        //Tokenizador t = new Tokenizador(1);
          //int numAtributos = 8;
        for(int i=0; i<numAtributos; i++){
-            int c[] = new int[7]; 
-            for(int j=0, p=0; j<7 && p<8;){
+            int c[] = new int[numAtributos-1]; 
+            for(int j=0, p=0; j<numAtributos-1 && p<numAtributos;){
                 if(p!=i) {
                     c[j]=p;
                    j++;  
                 } p++;
             }
-            for(int k=0; k<7;k++){
+            /*for(int k=0; k<numAtributos-1;k++){
                 System.out.print(c[k]);
-            }System.out.println();
-           System.out.println("\n\tSin la caracteristica " + i);
+            }System.out.println();*/
+            String r1 = "Sin la caracteristica " + i;
+           System.out.println("\n\t" + r1);
            GeneradorInstancias gi1 = new GeneradorInstancias(t.getInstancias());
-            gi1.generarInstancia(c, 0, Factor.RANDOM);
+            gi1.generarInstancia(c, porcentaje[o], Factor.RANDOM);
         
+            GeneradorInstancias gi2 = new GeneradorInstancias(t.getInstancias());
+            gi2.generarInstancia(c, 0, Factor.RANDOM);
+            
             NaiveBayes nb = new NaiveBayes();
             nb.entrenar(gi1.getNuevasInstancias());
-            nb.clasificar(gi1.getNuevasInstancias().getPatrones());
+            nb.clasificar(gi2.getNuevasInstancias().getPatrones());
             System.out.println(nb.getMc().toString() + "\n");
+            con++;
+            if(nb.getMc().calcularEfectividad() > maxPor){
+                maxPor = nb.getMc().calcularEfectividad();
+                max = r1;
+            }
         }
-       
+       System.out.println("\nMAXIMO\n" + max + "\t" + maxPor +"\t Con %: " + (100-porcentaje[o]));
+         if(maxPor > maxPor1){
+             maxPor1=maxPor;
+             max1=max;
+             pC=100-porcentaje[o];
+         }
+         }
+         
+         System.out.println( con);
+         System.out.println("\nMAXIMOOOO\n" + max1 + "\t" + maxPor1 +"\t Con %: " + pC);
        //Arañas
         /*Tokenizador t1 = new Tokenizador();
         int numAtributos1 = 8;
