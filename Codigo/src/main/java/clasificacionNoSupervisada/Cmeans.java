@@ -33,13 +33,15 @@ public class Cmeans {
             //si entra aquí, es que ya actualizó los clusters a los nuevos ajustes
             asignarClase(); //se asigna nueva clase a cada patron con los nuevos Clusters
         }
-        /*System.out.println("Últimos");
+        ////
+        System.out.println("Últimos clusters");
         for(PatronRepresentativo p : this.clusters){
             System.out.print(p.getClase()+": ");
             for(Double u : p.getVector()){
                 System.out.print(u + ", ");
             }System.out.println();
-        }*/
+        }
+       //// 
     }
     public void elegirClusters(){ //aleatorios sin repetirse
         int numPatrones = this.patrones.size(); //numero de patrones a clasificar
@@ -56,6 +58,7 @@ public class Cmeans {
             posMedias.add(num);
             this.clusters.add(new PatronRepresentativo("cluster" + i, this.patrones.get(num).getVector()));
         } 
+        ///
         /*System.out.println("Primeros");
         for(PatronRepresentativo p : this.clusters){
             System.out.print(p.getClase()+": ");
@@ -63,6 +66,7 @@ public class Cmeans {
                 System.out.print(u + ", ");
             }System.out.println();
         }*/
+        ///
     }
     
     public void asignarClase(){  //con base a los clusters y la distancia de estos con cada patron
@@ -125,7 +129,7 @@ public class Cmeans {
         } return false;
     }
 
-    public int buscarClase(Patron aux, ArrayList<PatronRepresentativo> auxClusters){
+    public static int buscarClase(Patron aux, ArrayList<PatronRepresentativo> auxClusters){
         int posicion=-1;
         boolean encontrado = false; //bandera para saber si exite la clase representativa de la nueva instancia
            for(int i=0; i<auxClusters.size(); i++){ //recorre los representativos
@@ -164,4 +168,8 @@ public class Cmeans {
     public void setPatrones(ArrayList<Patron> patrones) {
         this.patrones = patrones;
     }
+    public Instancias getInstancias(){
+        return new Instancias(this.patrones);
+    }
+    
 }

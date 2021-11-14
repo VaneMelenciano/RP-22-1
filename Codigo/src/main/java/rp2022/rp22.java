@@ -376,11 +376,11 @@ public class rp22 {
          Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
-        int[] c = {0, 1};
+        int[] c = {2, 3};
         GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
-               gi1.generarInstancia(c, 0, Factor.PRIMEROS);
+               gi1.generarInstancia(c, 0, Factor.RANDOM);
                
-        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
+        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 8);
         //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
         System.out.println();

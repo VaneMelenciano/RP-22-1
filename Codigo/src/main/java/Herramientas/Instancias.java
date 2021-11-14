@@ -25,6 +25,13 @@ public class Instancias {
         this.patrones=new ArrayList<>(); 
         this.cantidadPorClase = new ArrayList<>(); 
     }
+    public Instancias(ArrayList<Patron> patrones){
+        this.patrones=new ArrayList<>();
+        this.clases=new ArrayList<>();
+        this.patrones=new ArrayList<>(); 
+        this.cantidadPorClase = new ArrayList<>(); 
+        agregarPatronesC(patrones);
+    }
     public void agregarPatron(Patron patron){
         patrones.add(patron); //agregar el patron a la lista de patrones
         this.setNumAtributos(patron.getVector().length);
@@ -37,10 +44,28 @@ public class Instancias {
           this.cantidadPorClase.set(posicion, this.cantidadPorClase.get(posicion)+1);;// aumenta 1 en la posicion del arreglo que está la clase del patrón 
     }
     
+    //con base a su clase resultante
+    public void agregarPatronC(Patron patron){
+        patrones.add(patron); //agregar el patron a la lista de patrones
+        this.setNumAtributos(patron.getVector().length);
+        if(!clases.contains(patron.getClaseResultante())){ //si la clase que tiene este patron, no exite, agrega una nueva clase
+               this.clases.add(patron.getClaseResultante());
+               this.cantidadPorClase.add(0); //agregamos una nueva posicion para la clase
+        } 
+          
+          int posicion =this.clases.indexOf(patron.getClaseResultante()); //busca la posicion de la clase del patron, en la lista de clases
+          this.cantidadPorClase.set(posicion, this.cantidadPorClase.get(posicion)+1);;// aumenta 1 en la posicion del arreglo que está la clase del patrón 
+    }
+    
     //agregar una lista de patrones
     public void agregarPatrones(ArrayList<Patron> patrones){
         for(Patron p: patrones){
            agregarPatron(p);
+       }
+    }
+    public void agregarPatronesC(ArrayList<Patron> patrones){
+        for(Patron p: patrones){
+           agregarPatronC(p);
        }
     }
     public void eliminarPatron(int pos){
