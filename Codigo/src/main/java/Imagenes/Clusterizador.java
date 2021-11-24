@@ -27,13 +27,20 @@ public class Clusterizador {    //abrir imagen
     public Clusterizador(int n){
          this.numClusters = n;
          abrirImagen();
+         clasificar();
+    }
+    public Clusterizador(int[] n){
+        abrirImagen(); 
+        for(int i=0; i<n.length; i++){
+          this.numClusters = n[i];
+          clasificar();
+        }
     }
 
     public void abrirImagen() {
         this.imagenOriginal = Herramientas.lectura(); //abrir imagen
         JframeImagen frame = new JframeImagen(imagenOriginal); //mostar imagen
         frame.setTitle("Imagen Orignal");
-        clasificar();
     }
     public void clasificar(){
        Adaptador ad = new Adaptador(this.imagenOriginal);

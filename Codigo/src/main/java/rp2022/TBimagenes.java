@@ -18,7 +18,10 @@ import java.awt.image.BufferedImage;
  */
 public class TBimagenes {
     public static void main(String[] args){
-        Clusterizador c = new Clusterizador(6);
+        //Clusterizador c = new Clusterizador(600);
+        int[] num = {2, 5, 15};
+        //int[] num = {1, 3, 5, 8, 15};
+        Clusterizador c = new Clusterizador(num);
         //c.abrir();
         /*Image imagen = Herramientas.lectura();
         JframeImagen jf = new JframeImagen(imagen);
