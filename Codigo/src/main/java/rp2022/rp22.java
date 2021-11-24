@@ -7,7 +7,9 @@ package rp2022;
 
 import Herramientas.Factor;
 import Herramientas.GeneradorInstancias;
+import Herramientas.Grafica;
 import Herramientas.Tokenizador;
+import Imagenes.Herramientas;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import clasesSupervisadas.NaiveBayes;
@@ -376,7 +378,7 @@ public class rp22 {
          Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
-        int[] c = {2, 3};
+        int[] c = {0, 1};
         GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
                gi1.generarInstancia(c, 0, Factor.RANDOM);
                
@@ -384,7 +386,7 @@ public class rp22 {
         //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
         System.out.println();
-        ArrayList<Patron> patrones = cm.getPatrones();
+        /*ArrayList<Patron> patrones = cm.getPatrones();
         for(int i=0; i<patrones.size(); i++){
             Patron patron = patrones.get(i);
             for(Double d : patron.getVector())
@@ -393,7 +395,8 @@ public class rp22 {
                 //System.out.print(patron.getVector()[k] + "\t");
             System.out.println(patron.getClaseResultante());
         }
-        System.out.println();
+        System.out.println();*/
+        Grafica.graficar(cm.getPatrones());
     }
 }
 

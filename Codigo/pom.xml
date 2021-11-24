@@ -11,4 +11,18 @@
         <maven.compiler.target>16</maven.compiler.target>
     </properties>
     <name>Codigo</name>
+    <dependencies>
+        <dependency>
+            <groupId>JFreechart</groupId>
+            <artifactId>ID_JFreechart</artifactId>
+            <version>1.0.19</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>JCommon</groupId>
+            <artifactId>ID_JCommon</artifactId>
+            <version>1.0.23</version>
+            <type>jar</type>
+        </dependency>
+    </dependencies>
 </project>
