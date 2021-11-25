@@ -182,7 +182,7 @@ public class MinMax {
     public ArrayList<PatronRepresentativo> getcentroidesBase1(){ //castea los centroides a patrones representativos
         ArrayList<PatronRepresentativo> patrones = new ArrayList<>();
         for(Patron p: this.centroidesBase){
-            patrones.add((PatronRepresentativo) p);
+            patrones.add(new PatronRepresentativo(p));
         }
         return patrones;
     }

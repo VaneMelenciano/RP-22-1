@@ -16,14 +16,14 @@ import java.awt.Image;
 public class ClusterizadorMinMax {
      private Image imagenOriginal;
      private Image nuevaImagen;
-     private int umbral;
+     private double umbral;
      
-    public ClusterizadorMinMax(int n){
+    public ClusterizadorMinMax(double n){
         this.umbral=n;
          abrirImagen();
          clasificar();
     }
-    public ClusterizadorMinMax(int[] n){
+    public ClusterizadorMinMax(double[] n){
         abrirImagen(); 
         for(int i=0; i<n.length; i++){
           this.umbral = n[i];

@@ -9,6 +9,7 @@ import Herramientas.Factor;
 import Herramientas.GeneradorInstancias;
 import Herramientas.Grafica;
 import Herramientas.Tokenizador;
+import Imagenes.ClusterizadorMinMax;
 import Imagenes.Herramientas;
 import Imagenes.MinMax;
 import clasesSupervisadas.KNN;
@@ -402,7 +403,7 @@ public class rp22 {
         
         
          //MIN MAX
-        Tokenizador t1 = new Tokenizador();
+        /*Tokenizador t1 = new Tokenizador();
          //generar instancias
          //A  B  C  D
          //0  1  2  3
@@ -412,7 +413,9 @@ public class rp22 {
         
         double umbral = 1;
         MinMax mm = new MinMax(gi1.getNuevasInstancias(), umbral);
-        Grafica.graficar(mm.getInstancias().getPatrones(), "BC", "Con " +umbral+" de umbral");
+        Grafica.graficar(mm.getInstancias().getPatrones(), "BC", "Con " +umbral+" de umbral");*/
+        double[] v = {0.1, 0.2, 0.3, 0.5, 0.8, 1, 3, 4, 5};
+        ClusterizadorMinMax cm = new ClusterizadorMinMax(v);
     }
 }
 
