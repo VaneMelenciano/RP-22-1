@@ -19,17 +19,17 @@ import java.awt.Image;
     //extraer el tono de los j pixeles
     //con base a los j clusters, clasificar nos nxm pixeles de la imagen, en una nueva imagen
 */
-public class Clusterizador {    //abrir imagen
+public class ClusterizadorCmeans {    //abrir imagen
      private int numClusters;
      private Image imagenOriginal;
      private Image nuevaImagen;
      
-    public Clusterizador(int n){
+    public ClusterizadorCmeans(int n){
          this.numClusters = n;
          abrirImagen();
          clasificar();
     }
-    public Clusterizador(int[] n){
+    public ClusterizadorCmeans(int[] n){
         abrirImagen(); 
         for(int i=0; i<n.length; i++){
           this.numClusters = n[i];

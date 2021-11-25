@@ -21,14 +21,15 @@ import org.jfree.util.PublicCloneable;
 public class Grafica {
     private JFreeChart grafica;
     private XYSeriesCollection series;
-    private String ejeX, ejeY,titulo;
+    private String ejeX, ejeY,titulo, titulo1;
 
-    public Grafica(String ejeX, String ejeY, String titulo) {
+    public Grafica(String ejeX, String ejeY, String titulo, String titulo1) {
         this.grafica = null;
         this.series = new XYSeriesCollection();
         this.ejeX = ejeX;
         this.ejeY = ejeY;
         this.titulo = titulo;
+        this.titulo1=titulo1;
     }
     public void agrearSerie(String nombre){
         XYSeries serie = new XYSeries(nombre);
@@ -52,17 +53,17 @@ public class Grafica {
     public void crearYmostrarGrafica(){
     
         //this.grafica = ChartFactory.createXYLineChart(titulo, ejeX, ejeY, series);
-        this.grafica = ChartFactory.createScatterPlot(titulo, ejeX, ejeX, series);
-        ChartFrame frame = new ChartFrame("Gráfica Comparación ", grafica);
+        this.grafica = ChartFactory.createScatterPlot(this.titulo, ejeX, ejeX, series);
+        ChartFrame frame = new ChartFrame(titulo1, grafica);
         frame.setVisible(true);
         
         
     }
-     public static void graficar(ArrayList<Patron> instancias){
+     public static void graficar(ArrayList<Patron> instancias, String tituloGrafica, String titulo){
         // 0,1,2,3
         // recorrer las instancias y verificar los datos para crear las series
         ArrayList<String> clusters = new ArrayList<>();
-        Grafica grafica = new Grafica("ejex", "ejeY", "Distribucion");
+        Grafica grafica = new Grafica("ejex", "ejeY", tituloGrafica, titulo);
         clusters.add(instancias.get(0).getClaseResultante());
         grafica.agrearSerie(""+instancias.get(0).getClaseResultante());
         for(Patron aux: instancias){

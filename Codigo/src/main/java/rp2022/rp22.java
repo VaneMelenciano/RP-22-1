@@ -10,6 +10,7 @@ import Herramientas.GeneradorInstancias;
 import Herramientas.Grafica;
 import Herramientas.Tokenizador;
 import Imagenes.Herramientas;
+import Imagenes.MinMax;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import clasesSupervisadas.NaiveBayes;
@@ -375,17 +376,17 @@ public class rp22 {
         
         
         //Cmeans
-         Tokenizador t1 = new Tokenizador();
+         //Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
-        int[] c = {0, 1};
+        /*int[] c = {0, 1};
         GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
                gi1.generarInstancia(c, 0, Factor.RANDOM);
                
-        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 8);
+        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
         //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
-        System.out.println();
+        System.out.println();*/
         /*ArrayList<Patron> patrones = cm.getPatrones();
         for(int i=0; i<patrones.size(); i++){
             Patron patron = patrones.get(i);
@@ -396,7 +397,22 @@ public class rp22 {
             System.out.println(patron.getClaseResultante());
         }
         System.out.println();*/
-        Grafica.graficar(cm.getPatrones());
+        //Grafica.graficar(cm.getPatrones());
+        
+        
+        
+         //MIN MAX
+        Tokenizador t1 = new Tokenizador();
+         //generar instancias
+         //A  B  C  D
+         //0  1  2  3
+        int[] c = {1, 2};
+        GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+               gi1.generarInstancia(c, 0, Factor.RANDOM);
+        
+        double umbral = 1;
+        MinMax mm = new MinMax(gi1.getNuevasInstancias(), umbral);
+        Grafica.graficar(mm.getInstancias().getPatrones(), "BC", "Con " +umbral+" de umbral");
     }
 }
 

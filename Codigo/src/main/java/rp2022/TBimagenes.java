@@ -5,7 +5,7 @@
  */
 package rp2022;
 
-import Imagenes.Clusterizador;
+import Imagenes.ClusterizadorCmeans;
 import Imagenes.Herramientas;
 import Imagenes.JframeImagen;
 import java.awt.Color;
@@ -21,7 +21,7 @@ public class TBimagenes {
         //Clusterizador c = new Clusterizador(600);
         int[] num = {2, 5, 15};
         //int[] num = {1, 3, 5, 8, 15};
-        Clusterizador c = new Clusterizador(num);
+        ClusterizadorCmeans c = new ClusterizadorCmeans(num);
         //c.abrir();
         /*Image imagen = Herramientas.lectura();
         JframeImagen jf = new JframeImagen(imagen);

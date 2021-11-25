@@ -29,18 +29,18 @@ public class Cmeans {
         elegirClusters(); //se escogen n patrones al azar
         asignarClase(); //se clasifican los patrones con base a los Clusters elegidos anteriormente
         int con =0;
-        while(compararClisters(ajustesClusters())){ //miestras sean diferentes
+        while(compararClusters(ajustesClusters())){ //miestras sean diferentes
             //si entra aquí, es que ya actualizó los clusters a los nuevos ajustes
             asignarClase(); //se asigna nueva clase a cada patron con los nuevos Clusters
         }
         ////
-        System.out.println("Últimos clusters");
+        /*System.out.println("Últimos clusters");
         for(PatronRepresentativo p : this.clusters){
             System.out.print(p.getClase()+": ");
             for(Double u : p.getVector()){
                 System.out.print(u + ", ");
             }System.out.println();
-        }
+        }*/
        //// 
     }
     public void elegirClusters(){ //aleatorios sin repetirse
@@ -116,7 +116,7 @@ public class Cmeans {
         return auxClusters;
     }
     
-    public boolean compararClisters(ArrayList<PatronRepresentativo> auxClusters ){
+    public boolean compararClusters(ArrayList<PatronRepresentativo> auxClusters ){
         //retorna true si son diferentes, false en caso contrario (iguales)
         for(int x=0; x< auxClusters.size();x++){
             double[] vectorN = auxClusters.get(x).getVector();
