@@ -377,17 +377,21 @@ public class rp22 {
         
         
         //Cmeans
-         //Tokenizador t1 = new Tokenizador();
+         Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
-        /*int[] c = {0, 1};
-        GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
-               gi1.generarInstancia(c, 0, Factor.RANDOM);
+        //A  B  C  D
+        //0  1  2  3
+        
+        int[] c = {0, 2};
+        GeneradorInstancias gi = new GeneradorInstancias(t1.getInstancias());
+               gi.generarInstancia(c, 0, Factor.RANDOM);
                
-        Cmeans cm = new Cmeans(gi1.getNuevasInstancias(), 3);
+        Cmeans cm = new Cmeans(gi.getNuevasInstancias(), 3);
         //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
-        System.out.println();*/
+        Grafica.graficar(cm.getPatrones(), "AC", "C-means con 3 clusters");
+       
         /*ArrayList<Patron> patrones = cm.getPatrones();
         for(int i=0; i<patrones.size(); i++){
             Patron patron = patrones.get(i);
@@ -398,24 +402,29 @@ public class rp22 {
             System.out.println(patron.getClaseResultante());
         }
         System.out.println();*/
-        //Grafica.graficar(cm.getPatrones());
+        
         
         
         
          //MIN MAX
-        /*Tokenizador t1 = new Tokenizador();
+        //Tokenizador t1 = new Tokenizador();
          //generar instancias
          //A  B  C  D
          //0  1  2  3
-        int[] c = {1, 2};
-        GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
-               gi1.generarInstancia(c, 0, Factor.RANDOM);
+        //int[] c = {1, 2};
+        //GeneradorInstancias gi = new GeneradorInstancias(t1.getInstancias());
+               //gi1.generarInstancia(c, 0, Factor.RANDOM);
+               double[] umbral = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 1.4, 1.7, 2};
         
-        double umbral = 1;
-        MinMax mm = new MinMax(gi1.getNuevasInstancias(), umbral);
-        Grafica.graficar(mm.getInstancias().getPatrones(), "BC", "Con " +umbral+" de umbral");*/
-        double[] v = {0.1, 0.2, 0.3, 0.5, 0.8, 1, 3, 4, 5};
-        ClusterizadorMinMax cm = new ClusterizadorMinMax(v);
+        for(double u: umbral){
+            GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+               gi1.generarInstancia(c, 0, Factor.RANDOM);
+            MinMax mm = new MinMax(gi1.getNuevasInstancias(), u);
+            Grafica.graficar(mm.getInstancias().getPatrones(), "AC", "MinMan con " +u+" de umbral");   
+        }
+        
+        //double[] v = {0.1, 0.2, 0.3, 0.5, 0.8, 1, 3, 4, 5};
+        //ClusterizadorMinMax cm = new ClusterizadorMinMax(v);
     }
 }
 

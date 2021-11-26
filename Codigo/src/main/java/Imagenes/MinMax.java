@@ -27,7 +27,8 @@ import modelos.PatronRepresentativo;
             //hasta que "d" sea menor que el umbral, es decir, que la instancia más lejana
             //de los clusters calculados, no supere el umbral
 public class MinMax {
-    private ArrayList<Patron> instancias; //instancias que se reciben 
+    private ArrayList<Patron> instancias; //instancias que se usan para crear los centroides
+    private ArrayList<Patron> instanciasOriginales;
     private Patron central;
     private ArrayList<Patron> centroidesBase;
     private ArrayList<Integer> posicionesCentroides; 
@@ -35,6 +36,7 @@ public class MinMax {
     
     public MinMax(Instancias instancias, double umbral){
        this.instancias=instancias.getPatrones();
+       this.instanciasOriginales=instancias.getPatrones();
        this.centroidesBase = new ArrayList<>();
        this.posicionesCentroides = new ArrayList<>();
        this.umbral=umbral;
@@ -159,7 +161,7 @@ public class MinMax {
     }
     
     public void asignarClases(){  //con base a los clusters y la distancia de estos con cada patron
-        for(Patron p: this.instancias){
+        for(Patron p: this.instanciasOriginales){
             double minDistancia = distancia(p.getVector(), this.centroidesBase.get(0).getVector()); 
             int iMedia = 0; //posicion de la media a donde corresponde el patron
             //calcular la distancia entre el vector del nuevo patron con los clusters
@@ -173,6 +175,7 @@ public class MinMax {
              p.setClaseResultante(this.centroidesBase.get(iMedia).getClase()); //le da al patron una claseResultante provisional
         }
     }
+    
     public Instancias getInstancias(){
         return new Instancias(this.instancias);
     }
