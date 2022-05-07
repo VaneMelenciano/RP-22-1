@@ -12,9 +12,12 @@ import Herramientas.Tokenizador;
 import Imagenes.ClusterizadorMinMax;
 import Imagenes.Herramientas;
 import Imagenes.MinMax;
+import MemoriasAsociativas.Lernmatrix;
 import clasesSupervisadas.KNN;
 import clasesSupervisadas.MinimaDistancia;
 import clasesSupervisadas.NaiveBayes;
+import clasesSupervisadas.PerceptronDelta;
+import clasesSupervisadas.RedPerceptron;
 import clasificacionNoSupervisada.Cmeans;
 import modelos.Patron;
 import modelos.PatronRepresentativo;
@@ -377,7 +380,7 @@ public class rp22 {
         
         
         //Cmeans
-         Tokenizador t1 = new Tokenizador();
+        /* Tokenizador t1 = new Tokenizador();
         //ABCD
         //AB, AC, AD, BC, BD, CD
         //A  B  C  D
@@ -390,7 +393,7 @@ public class rp22 {
         Cmeans cm = new Cmeans(gi.getNuevasInstancias(), 3);
         //Cmeans cm = new Cmeans(t1.getInstancias(), 3);
         cm.clasificar();
-        Grafica.graficar(cm.getPatrones(), "CD", "C-means con 3 clusters");
+        Grafica.graficar(cm.getPatrones(), "CD", "C-means con 3 clusters");*/
        
         /*ArrayList<Patron> patrones = cm.getPatrones();
         for(int i=0; i<patrones.size(); i++){
@@ -407,21 +410,21 @@ public class rp22 {
         
         
          //MIN MAX
-        //Tokenizador t1 = new Tokenizador();
+        Tokenizador t1 = new Tokenizador();
          //generar instancias
          //A  B  C  D
          //0  1  2  3
-        //int[] c = {1, 2};
+        int[] c = {1, 2};
         //GeneradorInstancias gi = new GeneradorInstancias(t1.getInstancias());
                //gi1.generarInstancia(c, 0, Factor.RANDOM);
                //double[] umbral = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1, 1.4, 1.7, 2};
         
         //for(double u: umbral){
-            /*GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
+            GeneradorInstancias gi1 = new GeneradorInstancias(t1.getInstancias());
                gi1.generarInstancia(c, 0, Factor.RANDOM);
             //Grafica.graficar(gi1.getNuevasInstancias().getPatrones(), "o", "o");
             MinMax mm = new MinMax(gi1.getNuevasInstancias(), 1);
-            Grafica.graficar(mm.getInstancias().getPatrones(), "BD", "MinMan con " +"1"+" de umbral");  */ 
+            Grafica.graficar(mm.getInstancias().getPatrones(), "BD", "MinMan con " +"1"+" de umbral");  
             
             /*for(Patron p:mm.getInstanciasC().getPatrones()){
                 for(double d:p.getVector()){
@@ -437,6 +440,88 @@ public class rp22 {
         
         //double[] v = {0.1, 0.2, 0.3, 0.5, 0.8, 1, 3, 4, 5};
         //ClusterizadorMinMax cm = new ClusterizadorMinMax(v);
+        
+        
+        //PATRON DELTA
+        /*ArrayList<Patron> patrones = new ArrayList<Patron>();
+        patrones.add(new Patron("0", new double[]{0,0}));
+        patrones.add(new Patron("0", new double[]{0,1}));
+        patrones.add(new Patron("0", new double[]{1,0}));
+           patrones.add(new Patron("1", new double[]{1,1}));*/
+        /*
+         AND      OR       XOR
+        0 0 0    0 0 0    0 0 0
+        0 1 0    0 1 1    0 1 1
+        1 0 0    1 0 1    1 0 1
+        1 1 1    1 1 1    1 1 0
+        */
+        //AND NO = 1.5, 1.5, -3, 5
+        /*double[] pesos = {1.5, 2.5};
+        double alpha = -2;//0.02;
+        double umbral = 5;//7.1;
+        PerceptronDelta p = new PerceptronDelta(pesos, 0.02, 7.1, patrones);*/
+        /*
+        Pruebas:
+        double[] pesos = {0.5, 0.6};
+        double alpha = 0.02;
+        double umbral = 7.1;
+        */
+        /*System.out.println();
+        int a = 0;
+        System.out.println("x1\t" + "x2\t" + "y'\t" + "y");
+        for(Patron pa: p.getInstancias()){
+            for(int i=0; i<2; i++){
+                a = (int)pa.getVector()[i];
+                System.out.print(a + "\t");
+            }
+            System.out.println(pa.getClase() + "\t" + pa.getClaseResultante());
+        }*/
+        
+        //PATRON MULTICAPA
+        /*RedPerceptron p = new RedPerceptron();
+       
+        double input[][] = new double[][]{{0,0},{0,1},{1,0},{1,1}};
+        double t[][] = new double[][]{{0},{0},{0},{1}}; //AND
+        //double t[][] = new double[][]{{0},{1},{1},{1}}; //OR
+        //double t[][] = new double[][]{{0},{1},{1},{0}}; //XOR
+        
+        p.entrenar(input, t);
+        p.clasifica(new double[]{0,0});
+        p.clasifica(new double[]{0,1});
+        p.clasifica(new double[]{1,0});
+        p.clasifica(new double[]{1,1});
+        System.out.println();
+        System.out.println("x1\t" + "x2\t" + "y'\t" + "y");
+        int i=0;
+        for(double[] d: input){
+            System.out.print((int)d[0]+"\t"+(int)d[1]+"\t");
+            System.out.print((int)t[i][0] + "\t" + (int)t[i++][0] +"\n");
+        
+        }*/
+        /*int n =  69;//916;
+        char m = (char)n;
+        System.out.println(m);*/
+        /*int[][] m = new int[3][4];
+        for(int i=0; i<3; i++){
+            for(int j=0; j<4; j++){
+                m[i][j]= j;
+                System.out.print(m[i][j]);
+            }
+            System.out.println();
+        }*/
+        /*Tokenizador t = new Tokenizador();
+        Tokenizador t1 = new Tokenizador();
+        Lernmatrix l = new Lernmatrix(t.getInstancias().getPatrones(), t1.getInstancias().getPatrones());
+        l.imprimirMatriz();
+        //Patron p = new Patron(new double[] {1,0,1,0,1});
+        //Patron p = new Patron(new double[] {1,1,0,0,1});
+        Patron p = new Patron(new double[] {1,0,1,1,0});
+        l.recuperacion(p);
+        System.out.println();*/
+        /*int[] v = l.recuperacion(p);
+        for(int i=0; i<v.length; i++){
+           System.out.println(v[i]);
+        }*/
     }
 }
 
